@@ -9,7 +9,7 @@
 %global __requires_exclude ^/usr/bin/ansible-playbook$
 
 Name:           openshift-ansible
-Version:        3.11.99
+Version:        3.11.103
 Release:        1%{?dist}
 Summary:        Openshift and Atomic Enterprise Ansible
 License:        ASL 2.0
@@ -190,6 +190,31 @@ BuildArch:     noarch
 %{_datadir}/ansible/%{name}/test
 
 %changelog
+* Sun Mar 31 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.103-1
+- Linting fixes in playbooks and roles (vikash.kumar@oneconvergence.com)
+- Updating OWNERS (jcallen@redhat.com)
+- Remove papr test files (rteague@redhat.com)
+- Re-apply tuned profile during upgrade (rteague@redhat.com)
+- lib_utils to parse *_storage_host variables with get_templated
+  (jstuever@redhat.com)
+- Cisco ACI CNI Plugin support (sumitnaiksatam@gmail.com)
+
+* Thu Mar 28 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.102-1
+- bz1690900: no longer install etcd on masters (jstuever@redhat.com)
+- Wait for ServiceMonitor CRD to be created should have configurable retries
+  and delays (vrutkovs@redhat.com)
+- [release-3.11] Do not include enterprise registry unless available in
+  oreg_url (jcallen@redhat.com)
+
+* Tue Mar 26 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.101-1
+- Update examples-sync.sh to use XPAAS_VERSION ose-v1.4.18 (ken@zaptillion.net)
+- Update EAP 7.1 and 6.4 imagestreams and templates (ken@zaptillion.net)
+- Teardown: remove security using cluster ID tag (vrutkovs@redhat.com)
+
+* Sun Mar 24 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.100-1
+- Modify lib_utils_oo_oreg_image filter to work against Satellite url pattern
+  (bysnupy@hotmail.com)
+
 * Thu Mar 21 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.99-1
 - remove dash causing syntax error in kibana install role
   (marriott_robert@bah.com)
