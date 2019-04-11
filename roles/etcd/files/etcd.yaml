@@ -34,10 +34,8 @@ spec:
      - mountPath: /etc/localtime
        name: host-localtime
     livenessProbe:
-      tcpSocket:
-        port: 2379
+      exec:
       initialDelaySeconds: 45
-      timeoutSeconds: 10
   volumes:
   - name: master-config
     hostPath:
