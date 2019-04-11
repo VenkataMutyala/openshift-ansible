@@ -9,7 +9,7 @@
 %global __requires_exclude ^/usr/bin/ansible-playbook$
 
 Name:           openshift-ansible
-Version:        3.11.92
+Version:        3.11.103
 Release:        1%{?dist}
 Summary:        Openshift and Atomic Enterprise Ansible
 License:        ASL 2.0
@@ -190,6 +190,92 @@ BuildArch:     noarch
 %{_datadir}/ansible/%{name}/test
 
 %changelog
+* Sun Mar 31 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.103-1
+- Linting fixes in playbooks and roles (vikash.kumar@oneconvergence.com)
+- Updating OWNERS (jcallen@redhat.com)
+- Remove papr test files (rteague@redhat.com)
+- Re-apply tuned profile during upgrade (rteague@redhat.com)
+- lib_utils to parse *_storage_host variables with get_templated
+  (jstuever@redhat.com)
+- Cisco ACI CNI Plugin support (sumitnaiksatam@gmail.com)
+
+* Thu Mar 28 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.102-1
+- bz1690900: no longer install etcd on masters (jstuever@redhat.com)
+- Wait for ServiceMonitor CRD to be created should have configurable retries
+  and delays (vrutkovs@redhat.com)
+- [release-3.11] Do not include enterprise registry unless available in
+  oreg_url (jcallen@redhat.com)
+
+* Tue Mar 26 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.101-1
+- Update examples-sync.sh to use XPAAS_VERSION ose-v1.4.18 (ken@zaptillion.net)
+- Update EAP 7.1 and 6.4 imagestreams and templates (ken@zaptillion.net)
+- Teardown: remove security using cluster ID tag (vrutkovs@redhat.com)
+
+* Sun Mar 24 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.100-1
+- Modify lib_utils_oo_oreg_image filter to work against Satellite url pattern
+  (bysnupy@hotmail.com)
+
+* Thu Mar 21 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.99-1
+- remove dash causing syntax error in kibana install role
+  (marriott_robert@bah.com)
+- bug 1666674. Add Kibana sar and delegate url for auth-delegator
+  (jcantril@redhat.com)
+
+* Tue Mar 19 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.98-1
+- Bug 1689149 - adding secret names to SA for whitelisting
+  (ewolinet@redhat.com)
+- Calico: Add support for environment variable IP_AUTODETECTION_METHOD
+  (steve.teuber@idealo.de)
+
+* Sun Mar 17 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.97-1
+- Change the example docker_version for 3.9 and higher
+  (gabriel.mainberger@vshn.net)
+
+* Thu Mar 14 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.96-1
+- Update origin and dotnet content (sdodson@redhat.com)
+- add race condition protection when creating projects (tzumainn@redhat.com)
+- Rely on oc_adm_policy_user to fully qualify things (sdodson@redhat.com)
+- don't tolerate absence of resource type (sdodson@redhat.com)
+- Don't rely on aliases after restarting apiservers (sdodson@redhat.com)
+
+* Tue Mar 12 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.95-1
+- Include dedicated etcd in upgrade if they are nodes (rteague@redhat.com)
+- Redeploy admin console certificates when master certs are updated
+  (vrutkovs@redhat.com)
+- bug 1660956. Add container name to elasticsearch exec call
+  (jcantril@redhat.com)
+- openshift-sync: tolerate absence of KUBELET_HOSTNAME_OVERRIDE
+  (sdodson@redhat.com)
+- bug 1676720. Check for curator cronjob (jcantril@redhat.com)
+- Increase etcd quota to 8GB. (jnovy@redhat.com)
+- Fix version_requirement callback plugin (rteague@redhat.com)
+- Encode the cert when loading it (waseemhassanshahid@gmail.com)
+- Update roles/openshift_examples/files/examples/x86_64/xpaas-streams/eap-cd-
+  image-stream.json (roignac@gmail.com)
+- Add EAP CD 15 to xpass templates (ken@zaptillion.net)
+
+* Sun Mar 10 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.94-1
+- sdn: respect DEBUG_LOGLEVEL as written out by the "Configure Node settings"
+  task (dcbw@redhat.com)
+- Fix validation of values in image_policy_allowed_registries_for_import
+  (vrutkovs@redhat.com)
+- Don't start/stop docker when openshift_use_crio_only (sdodson@redhat.com)
+
+* Thu Mar 07 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.93-1
+- Simplify DaemonSet Update (rteague@redhat.com)
+- Remove runhour and runminute from curator config sample (bysnupy@hotmail.com)
+- Ensure kuryr has its own namespace (ltomasbo@redhat.com)
+- Adding new kuryr handler to avoid races (ltomasbo@redhat.com)
+- Logs are already being shipped to journald (jgallego@redhat.com)
+- fluentd: tolerate all taints (jdesousa@redhat.com)
+- Fix typo mistake: appliction 2 application. (jmferrer@paradigmadigital.com)
+- Relax version requirements (sdodson@redhat.com)
+- bug 1685618. Modify default_md for logging cert generation bug 1685655.
+  Update key size for logging cert generation (jcantril@redhat.com)
+- Remove hidden tag for latest Fuse builders #11292 (apupier@redhat.com)
+- Make sure that the user we expect has proper credentials set.
+  (rhowe@redhat.com)
+
 * Wed Mar 06 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.92-1
 - Include iscsi storage only on non-atomic host installs. (pdd@redhat.com)
 - additional provider network/octavia documentation (tzumainn@redhat.com)

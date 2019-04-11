@@ -394,7 +394,7 @@ def set_url_facts_if_unset(facts):
                                                                    ports[prefix]))
 
         r_lhn = "{0}:{1}".format(hostname, ports['api']).replace('.', '-')
-        r_lhu = "system:openshift-master/{0}:{1}".format(api_hostname, ports['api']).replace('.', '-')
+        r_lhu = "system:openshift-master/{0}:{1}".format(hostname, ports['api']).replace('.', '-')
         facts['master'].setdefault('loopback_cluster_name', r_lhn)
         facts['master'].setdefault('loopback_context_name', "default/{0}/system:openshift-master".format(r_lhn))
         facts['master'].setdefault('loopback_user', r_lhu)
@@ -495,9 +495,11 @@ def set_nodename(facts):
 
 def make_allowed_registries(registry_list):
     """ turns a list of wildcard registries to allowedRegistriesForImport json setting """
+    if False in [isinstance(reg, string_types) for reg in registry_list]:
+        raise Exception("image_policy_allowed_registries_for_import is not a list of strings: '%s'" % registry_list)
     return {
         "allowedRegistriesForImport": [
-            {'domainName': reg} if isinstance(reg, str) else reg for reg in registry_list
+            {'domainName': reg} for reg in registry_list
         ]
     }
 
