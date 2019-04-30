@@ -9,7 +9,7 @@
 %global __requires_exclude ^/usr/bin/ansible-playbook$
 
 Name:           openshift-ansible
-Version:        3.11.104
+Version:        3.11.110
 Release:        1%{?dist}
 Summary:        Openshift and Atomic Enterprise Ansible
 License:        ASL 2.0
@@ -190,6 +190,45 @@ BuildArch:     noarch
 %{_datadir}/ansible/%{name}/test
 
 %changelog
+* Tue Apr 23 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.110-1
+- imageconfig playbook fails with undefined variables (jcallen@redhat.com)
+- Move modify_yaml test to appropriate directory (rteague@redhat.com)
+- glusterfs: Update iSCSI config as part of upgrade (jarrpa@redhat.com)
+- glusterfs: Update glusterfs-fuse package as part of upgrade
+  (jarrpa@redhat.com)
+- glusterfs: Only check for heketi pod when it may be missing
+  (jarrpa@redhat.com)
+- glusterfs: Minor fixes to upgrade playbook (jarrpa@redhat.com)
+- Add nodeName to node-config template for azure (jcallen@redhat.com)
+- Stop gathering Ansible facts in openshift_facts (rteague@redhat.com)
+- bug 1695903. Pass token from logging proxy to es for metrics
+  (jcantril@redhat.com)
+
+* Sun Apr 21 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.109-1
+- 
+
+* Thu Apr 18 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.108-1
+- OWNERS File Audit (rteague@redhat.com)
+- Test using Ansible 2.7.10 (rteague@redhat.com)
+- Update openshift_facts facts gathering (rteague@redhat.com)
+- #10765 Update installation doc link for release-3.11
+  (nikolas.philips@baloise.ch)
+
+* Tue Apr 16 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.107-1
+- openshift_ovirt: Fix hostname in the inventory groups (rgolan@redhat.com)
+- Fix serviceaccounts' secrets for Metrics (jmartisk@redhat.com)
+
+* Sun Apr 14 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.106-1
+- Fixes NotReady nodes after ca and certificate update (jcallen@redhat.com)
+- Ensure master vars are passed to openshift_facts on upgrade
+  (vrutkovs@redhat.com)
+- Console cert redeploy: rerun install (vrutkovs@redhat.com)
+
+* Thu Apr 11 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.105-1
+- Update roles/openshift_logging_elasticsearch/tasks/main.yaml
+  (roignac@gmail.com)
+- Update main.yaml (crmarquesjc@gmail.com)
+
 * Wed Apr 10 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.104-1
 - Change the cni-cleanup file path to /etc (gabriel.mainberger@vshn.net)
 - Backport of #10173 (egarcia@redhat.com)
