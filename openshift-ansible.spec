@@ -9,7 +9,7 @@
 %global __requires_exclude ^/usr/bin/ansible-playbook$
 
 Name:           openshift-ansible
-Version:        3.11.103
+Version:        3.11.110
 Release:        1%{?dist}
 Summary:        Openshift and Atomic Enterprise Ansible
 License:        ASL 2.0
@@ -190,6 +190,77 @@ BuildArch:     noarch
 %{_datadir}/ansible/%{name}/test
 
 %changelog
+* Tue Apr 23 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.110-1
+- imageconfig playbook fails with undefined variables (jcallen@redhat.com)
+- Move modify_yaml test to appropriate directory (rteague@redhat.com)
+- glusterfs: Update iSCSI config as part of upgrade (jarrpa@redhat.com)
+- glusterfs: Update glusterfs-fuse package as part of upgrade
+  (jarrpa@redhat.com)
+- glusterfs: Only check for heketi pod when it may be missing
+  (jarrpa@redhat.com)
+- glusterfs: Minor fixes to upgrade playbook (jarrpa@redhat.com)
+- Add nodeName to node-config template for azure (jcallen@redhat.com)
+- Stop gathering Ansible facts in openshift_facts (rteague@redhat.com)
+- bug 1695903. Pass token from logging proxy to es for metrics
+  (jcantril@redhat.com)
+
+* Sun Apr 21 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.109-1
+- 
+
+* Thu Apr 18 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.108-1
+- OWNERS File Audit (rteague@redhat.com)
+- Test using Ansible 2.7.10 (rteague@redhat.com)
+- Update openshift_facts facts gathering (rteague@redhat.com)
+- #10765 Update installation doc link for release-3.11
+  (nikolas.philips@baloise.ch)
+
+* Tue Apr 16 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.107-1
+- openshift_ovirt: Fix hostname in the inventory groups (rgolan@redhat.com)
+- Fix serviceaccounts' secrets for Metrics (jmartisk@redhat.com)
+
+* Sun Apr 14 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.106-1
+- Fixes NotReady nodes after ca and certificate update (jcallen@redhat.com)
+- Ensure master vars are passed to openshift_facts on upgrade
+  (vrutkovs@redhat.com)
+- Console cert redeploy: rerun install (vrutkovs@redhat.com)
+
+* Thu Apr 11 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.105-1
+- Update roles/openshift_logging_elasticsearch/tasks/main.yaml
+  (roignac@gmail.com)
+- Update main.yaml (crmarquesjc@gmail.com)
+
+* Wed Apr 10 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.104-1
+- Change the cni-cleanup file path to /etc (gabriel.mainberger@vshn.net)
+- Backport of #10173 (egarcia@redhat.com)
+- openshift_ovirt: fix inventory creation of multi nodes (rgolan@redhat.com)
+- Update README.md (onurserdarosman@gmail.com)
+- Add playbooks to regenerate secrets for openshift-monitoring
+  (vrutkovs@redhat.com)
+- OLM: use olm_operator_version as a tag for Origin images
+  (vrutkovs@redhat.com)
+- tmpfile.d file clears the cni config on boot (pcameron@redhat.com)
+- BZ1695856 - redeploy certificates fails if use_crio_only (jcallen@redhat.com)
+- Option to add and annotate namespaces for openshift-service-catalog (apomitta
+  @apoorva-vm1.local.lan)
+- BZ1694106 - Update crictl.yaml runtime-endpoint config to resolve warning
+  (jcallen@redhat.com)
+- Remove block storageclass (crmarquesjc@gmail.com)
+- openshift_ovirt: Support setting mac_address in the manifest
+  (rgolan@redhat.com)
+- [KIECLOUD-110] - Update RHDM and RHPAM 7.30 templates on OCP and OSO service
+  catalog (fspolti@redhat.com)
+- [KIECLOUD-171] - Update Application templates and imagestreams on OCP for
+  RHDS and RHIPS (fspolti@redhat.com)
+- Revert "bug 1666674. Add Kibana sar and delegate url for auth-delegator"
+  (jcantril@redhat.com)
+- test/deprovision: retry attempts to destroy instances and SG
+  (vrutkovs@redhat.com)
+- Providing default oreg_url for validation (philippe@dellaert.org)
+- Update kube-rbac-proxy to v0.4.1 (vrutkovs@redhat.com)
+- ASB: use `${version}` in default image (vrutkovs@redhat.com)
+- Satellite image URL can be worked in example template image url replacement.
+  (bysnupy@hotmail.com)
+
 * Sun Mar 31 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.103-1
 - Linting fixes in playbooks and roles (vikash.kumar@oneconvergence.com)
 - Updating OWNERS (jcallen@redhat.com)
