@@ -3,7 +3,6 @@
 # why may affect the tasks here and in imported playbooks.
 
 # Pre-upgrade
-- import_playbook: ../initialize_nodes_to_upgrade.yml
 
 - name: Update repos on upgrade hosts
   hosts: "{{ l_upgrade_repo_hosts }}"
@@ -33,6 +32,8 @@
     openshift_release: "{{ openshift_upgrade_target }}"
     # openshift_protect_installed_version is passed n via upgrade_control_plane.yml
     # l_openshift_version_set_hosts is passed via upgrade_control_plane.yml
+
+- import_playbook: ../../../../init/cluster_facts.yml
 
 - name: OpenShift Health Checks
   hosts: "{{ l_upgrade_health_check_hosts }}"

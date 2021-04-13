@@ -4,14 +4,12 @@
   vars:
     component: hawkular-metrics
     hostnames: "hawkular-metrics,hawkular-metrics.{{ openshift_metrics_project }}.svc.cluster.local,{{ openshift_metrics_hawkular_hostname }}"
-  changed_when: no
 
 - name: generate hawkular-cassandra certificates
   include_tasks: setup_certificate.yaml
   vars:
     component: hawkular-cassandra
     hostnames: hawkular-cassandra
-  changed_when: no
 
 - name: generate password for hawkular metrics
   local_action: copy dest="{{ local_tmp.stdout }}/{{ item }}.pwd" content="{{ 15 | lib_utils_oo_random_word }}"
@@ -27,6 +25,12 @@
 - name: generate htpasswd file for hawkular metrics
   local_action: htpasswd path="{{ local_tmp.stdout }}/hawkular-metrics.htpasswd" name=hawkular password="{{ hawkular_metrics_pwd.content | b64decode }}"
   become: false
+  when: not openshift_metrics_hawkular_fips | default(False) | bool
+
+- copy:
+    content: "{{ htpasswd_output.stdout_lines | join('') }}"
+    dest: "{{ local_tmp.stdout }}/hawkular-metrics.htpasswd"
+  when: htpasswd_output is defined | default(False) | bool
 
 - name: copy local generated passwords to target
   copy:
@@ -35,6 +39,7 @@
   with_items:
   - hawkular-metrics.pwd
   - hawkular-metrics.htpasswd
+  when: not openshift_metrics_hawkular_fips or item != "hawkular-metrics.htpasswd"
 
 - name: read files for the hawkular-metrics secret
   shell: >
@@ -52,10 +57,11 @@
   - hawkular-cassandra.key
   - hawkular-cassandra.pem
   changed_when: false
+  when: not openshift_metrics_hawkular_fips or item != "hawkular-metrics.htpasswd"
 
 - set_fact:
     hawkular_secrets: |
-      {{ hawkular_secrets.results|map(attribute='stdout')|join('
+      {{ hawkular_secrets.results|selectattr('skipped','undefined')|map(attribute='stdout')|join('
       ')|from_yaml }}
 
 - name: generate hawkular-metrics-certs secret template
@@ -93,7 +99,22 @@
       hawkular-metrics.htpasswd: "{{ hawkular_secrets['hawkular-metrics.htpasswd'] }}"
       hawkular-metrics.password: >
         {{ hawkular_secrets['hawkular-metrics.pwd'] }}
-  when: name not in metrics_secrets.stdout_lines
+  when: name not in metrics_secrets.stdout_lines and not openshift_metrics_hawkular_fips
+  changed_when: no
+
+- name: generate hawkular-metrics-account secret template
+  template:
+    src: secret.j2
+    dest: "{{ mktemp.stdout }}/templates/hawkular_metrics_account.yaml"
+  vars:
+    name: hawkular-metrics-account
+    labels:
+      metrics-infra: hawkular-metrics
+    data:
+      hawkular-metrics.username: "{{ 'hawkular'|b64encode }}"
+      hawkular-metrics.password: >
+        {{ hawkular_secrets['hawkular-metrics.pwd'] }}
+  when: name not in metrics_secrets.stdout_lines and openshift_metrics_hawkular_fips
   changed_when: no
 
 - name: generate cassandra secret template

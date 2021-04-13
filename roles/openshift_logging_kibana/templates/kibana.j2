@@ -143,6 +143,30 @@ spec:
                resourceFieldRef:
                  containerName: kibana-proxy
                  resource: limits.memory
+{% if 'http_proxy' in openshift.common %}
+            -
+             name: "http_proxy"
+             value: "{{ openshift.common.http_proxy | default('') }}"
+            -
+             name: "HTTP_PROXY"
+             value: "{{ openshift.common.http_proxy | default('') }}"
+{% endif %}
+{% if 'https_proxy' in openshift.common %}
+            -
+             name: "https_proxy"
+             value: "{{ openshift.common.https_proxy | default('') }}"
+            -
+             name: "HTTPS_PROXY"
+             value: "{{ openshift.common.https_proxy | default('') }}"
+{% endif %}
+{% if 'no_proxy' in openshift.common %}
+            -
+             name: "no_proxy"
+             value: "{{ openshift.common.no_proxy | default('') }}"
+            -
+             name: "NO_PROXY"
+             value: "{{ openshift.common.no_proxy | default('') }}"
+{% endif %}
           volumeMounts:
             - name: kibana-proxy
               mountPath: /secret

@@ -220,7 +220,7 @@ class SDNCheck(OpenShiftCheck):
         """Return a list of all resources of the specified kind."""
         for resource in self.task_vars['resources']['results']:
             if resource['item'] == kind:
-                return resource['results']['results'][0]['items']
+                return resource['module_results']['results'][0]['items']
 
         raise OpenShiftCheckException('CouldNotListResource',
                                       'Could not list resource %s' % kind)
@@ -322,7 +322,7 @@ class SDNCheck(OpenShiftCheck):
                 '--label=io.kubernetes.container.name=%s' % container_name,
                 '--label=io.kubernetes.pod.namespace=%s' % namespace
             ])
-            command = ['/bin/crictl', 'exec', container_id]
+            command = ['/bin/crictl', 'exec', container_id.decode("utf-8")]
         else:
             container_id = self.read_command_output([
                 '/bin/docker', 'ps', '-l', '-a', '-q',
@@ -330,7 +330,7 @@ class SDNCheck(OpenShiftCheck):
                 % container_name,
                 '--filter=label=io.kubernetes.pod.namespace=%s' % namespace
             ])
-            command = ['/bin/docker', 'exec', container_id]
+            command = ['/bin/docker', 'exec', container_id.decode("utf-8")]
 
         return command
 

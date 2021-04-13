@@ -16,7 +16,7 @@ dockerConfig:
   execHandlerName: native
 enableUnidling: true
 imageConfig:
-  format: "{{ openshift_imageconfig_format }}"
+  format: "{{ openshift_facts_registry_url }}"
   latest: false
 iptablesSyncPeriod: "{{ openshift_node_iptables_sync_period }}"
 kubeletArguments:
@@ -50,6 +50,10 @@ kubeletArguments:
 {% endif %}
   enable-controller-attach-detach:
   - 'true'
+  runtime-cgroups:
+  - /systemd/system.slice
+  kubelet-cgroups:
+  - /systemd/system.slice
 masterClientConnectionOverrides:
   acceptContentTypes: application/vnd.kubernetes.protobuf,application/json
   burst: 40
@@ -70,3 +74,8 @@ volumeConfig:
   localQuota:
     perFSGroup: null
 volumeDirectory: {{ openshift_node_group_node_data_dir }}/openshift.local.volumes
+{% if (openshift_node_group_cloud_provider | default('', true) == 'azure') and
+      (openshift_kubelet_name_override | default('', true) != '') and
+      (not openshift_node_group_configmap | default(false) | bool) %}
+nodeName: {{ l_kubelet_node_name }}
+{% endif %}

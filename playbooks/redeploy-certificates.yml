@@ -1,6 +1,8 @@
 ---
 - import_playbook: init/main.yml
 
+- import_playbook: openshift-master/private/check-client-ca.yml
+
 - import_playbook: openshift-etcd/private/redeploy-certificates.yml
 
 - import_playbook: openshift-master/private/redeploy-certificates.yml
@@ -14,6 +16,21 @@
 - import_playbook: openshift-node/private/restart.yml
   vars:
     openshift_node_restart_docker_required: False
+
+- import_playbook: openshift-master/private/enable_bootstrap.yml
+  when: openshift_redeploy_openshift_ca | default(false) | bool
+
+- import_playbook: openshift-node/private/certificates-backup.yml
+  when: openshift_redeploy_openshift_ca | default(false) | bool
+
+- import_playbook: openshift-node/private/join.yml
+  when: openshift_redeploy_openshift_ca | default(false) | bool
+
+- import_playbook: openshift-node/private/restart.yml
+  when: openshift_redeploy_openshift_ca | default(false) | bool
+  vars:
+    openshift_node_restart_docker_required: true
+    openshift_node_restart_drain: true
 
 - import_playbook: openshift-hosted/private/redeploy-router-certificates.yml
   when: openshift_hosted_manage_router | default(true) | bool
@@ -31,5 +48,14 @@
 - import_playbook: openshift-console/private/redeploy-certificates.yml
   when: openshift_console_install | default(true) | bool
 
+- import_playbook: metrics-server/private/redeploy-certificates.yml
+  when: openshift_metrics_server_install | default(openshift_metrics_install_metrics | default(false)) | bool
+
+- import_playbook: openshift-logging/private/redeploy-certificates.yml
+  when: openshift_logging_install_logging | default(false) | bool
+
 - import_playbook: openshift-monitoring/private/redeploy-certificates.yml
   when: openshift_cluster_monitoring_operator_install | default(true) | bool
+
+- import_playbook: openshift-service-catalog/private/redeploy-certificates.yml
+  when: openshift_enable_service_catalog | default(true) | bool

@@ -33,10 +33,10 @@ controllers: '*'
 corsAllowedOrigins:
   # anchor with start (\A) and end (\z) of the string, make the check case insensitive ((?i)) and escape hostname
 {% for origin in ['127.0.0.1', 'localhost', openshift.common.ip, openshift.common.public_ip] | union(openshift.common.all_hostnames) | unique %}
-  - (?i)//{{ origin | regex_escape() }}(:|\z)
+  - ^(?i)https://{{ origin | regex_escape() }}(:|\z)
 {% endfor %}
 {% for custom_origin in osm_custom_cors_origins | default("") %}
-  - (?i)//{{ custom_origin | regex_escape() }}(:|\z)
+  - ^(?i)https://{{ custom_origin | regex_escape() }}(:|\z)
 {% endfor %}
 {% if 'disabled_features' in openshift.master %}
 disabledFeatures: {{ openshift.master.disabled_features | to_json }}
@@ -60,7 +60,7 @@ etcdStorageConfig:
   openShiftStoragePrefix: openshift.io
   openShiftStorageVersion: v1
 imageConfig:
-  format: {{ openshift_imageconfig_format }}
+  format: {{ openshift_facts_registry_url }}
   latest: {{ openshift_master_image_config_latest }}
 imagePolicyConfig:{{ openshift.master.image_policy_config | default({}) | combine({"internalRegistryHostname":"docker-registry.default.svc:5000"}) | lib_utils_to_padded_yaml(level=1) }}
 kubeletClientInfo:
@@ -136,7 +136,9 @@ networkConfig:
 {% endif %}
 # serviceNetworkCIDR must match kubernetesMasterConfig.servicesSubnet
   serviceNetworkCIDR: {{ openshift.common.portal_net }}
-  externalIPNetworkCIDRs: {{ openshift_master_external_ip_network_cidrs | default(["0.0.0.0/0"]) | lib_utils_to_padded_yaml(1,2) }}
+{% if openshift_master_external_ip_network_cidrs | default([]) | length > 0 %}
+  externalIPNetworkCIDRs: {{ openshift_master_external_ip_network_cidrs | lib_utils_to_padded_yaml(1,2) }}
+{% endif %}
 {% if openshift_master_ingress_ip_network_cidr is defined %}
   ingressIPNetworkCIDR: {{ openshift_master_ingress_ip_network_cidr }}
 {% endif %}

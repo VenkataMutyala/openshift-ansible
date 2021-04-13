@@ -33,6 +33,7 @@ objects:
       spec:
         nodeSelector: "${{NODE_LABELS}}"
         hostNetwork: true
+        hostPID: false
         containers:
         - name: glusterfs
           image: ${IMAGE_NAME}
@@ -84,6 +85,8 @@ objects:
             readOnly: true
           - name: glusterfs-target
             mountPath: "/etc/target"
+          - name: host-rootfs
+            mountPath: "/rootfs"
           securityContext:
             capabilities: {}
             privileged: true
@@ -115,7 +118,8 @@ objects:
           hostPath:
             path: "/var/lib/heketi"
         - name: glusterfs-run
-          emptyDir: {}
+          emptyDir:
+            medium: Memory
         - name: glusterfs-lvm
           hostPath:
             path: "/run/lvm"
@@ -152,6 +156,9 @@ objects:
         - name: glusterfs-target
           hostPath:
             path: "/etc/target"
+        - name: host-rootfs
+          hostPath:
+            path: "/"
         restartPolicy: Always
         terminationGracePeriodSeconds: 30
         dnsPolicy: ClusterFirst

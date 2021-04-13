@@ -6,27 +6,22 @@
 
 """Ansible module for retrieving and setting openshift related facts"""
 
-# pylint: disable=no-name-in-module, import-error, wrong-import-order
 import copy
 import errno
 import json
 import re
 import os
-import yaml
 import struct
 import socket
 import ipaddress
 from distutils.util import strtobool
-from ansible.module_utils.six import text_type
-from ansible.module_utils.six import string_types
+import yaml
 
-# ignore pylint errors related to the module_utils import
-# pylint: disable=redefined-builtin, unused-wildcard-import, wildcard-import
-# import module snippets
-from ansible.module_utils.basic import *  # noqa: F403
-from ansible.module_utils.facts import *  # noqa: F403
-from ansible.module_utils.urls import *  # noqa: F403
-from ansible.module_utils.six import iteritems, itervalues
+from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.urls import fetch_url
+from ansible.module_utils.six import iteritems, itervalues, text_type, string_types
+# ansible.module_utils.six.moves is a meta path importer
+# pylint: disable=no-name-in-module, import-error
 from ansible.module_utils.six.moves.urllib.parse import urlparse, urlunparse
 from ansible.module_utils._text import to_native
 
@@ -469,12 +464,10 @@ def set_sdn_facts_if_unset(facts, system_facts):
         facts['node']['sdn_mtu'] = '1450'
 
         for val in itervalues(system_facts):
-            if isinstance(val, dict) and 'mtu' in val:
-                mtu = val['mtu']
 
-                if 'ipv4' in val and val['ipv4'].get('address') == node_ip:
-                    facts['node']['sdn_mtu'] = str(mtu - 50)
-
+            if isinstance(val, dict):
+                if val.get('address') == node_ip:
+                    facts['node']['sdn_mtu'] = str(val.get('mtu') - 50)
     return facts
 
 
@@ -712,8 +705,10 @@ def merge_facts(orig, new, additive_facts_to_overwrite):
     inventory_json_facts = ['admission_plugin_config',
                             'kube_admission_plugin_config',
                             'image_policy_config',
-                            "builddefaults",
-                            "buildoverrides"]
+                            'builddefaults',
+                            'buildoverrides',
+                            'api_server_args',
+                            'audit_config']
 
     facts = dict()
     for key, value in iteritems(orig):
@@ -977,6 +972,13 @@ def pop_obsolete_local_facts(local_facts):
                 local_facts[role].pop(key, None)
 
 
+def pop_obsolete_local_roles(known_roles, local_facts):
+    """Remove unknown roles from local_facts"""
+    for role in local_facts.keys():
+        if role not in known_roles:
+            local_facts.pop(role, None)
+
+
 class OpenShiftFactsUnsupportedRoleError(Exception):
     """Origin Facts Unsupported Role Error"""
     pass
@@ -1013,13 +1015,12 @@ class OpenShiftFacts(object):
                    'buildoverrides',
                    'cloudprovider',
                    'common',
-                   'etcd',
                    'master',
                    'node']
 
     # Disabling too-many-arguments, this should be cleaned up as a TODO item.
     # pylint: disable=too-many-arguments,no-value-for-parameter
-    def __init__(self, role, filename, local_facts,
+    def __init__(self, role, filename, system_facts, local_facts,
                  additive_facts_to_overwrite=None):
         self.changed = False
         self.filename = filename
@@ -1028,18 +1029,7 @@ class OpenShiftFacts(object):
                 "Role %s is not supported by this module" % role
             )
         self.role = role
-
-        # Collect system facts and preface each fact with 'ansible_'.
-        try:
-            # pylint: disable=too-many-function-args,invalid-name
-            self.system_facts = ansible_facts(module, ['hardware', 'network', 'virtual', 'facter'])  # noqa: F405
-            additional_facts = {}
-            for (k, v) in self.system_facts.items():
-                additional_facts["ansible_%s" % k.replace('-', '_')] = v
-            self.system_facts.update(additional_facts)
-        except UnboundLocalError:
-            # ansible-2.2,2.3
-            self.system_facts = get_all_facts(module)['ansible_facts']  # noqa: F405
+        self.system_facts = system_facts
 
         self.facts = self.generate_facts(local_facts,
                                          additive_facts_to_overwrite)
@@ -1233,6 +1223,7 @@ class OpenShiftFacts(object):
 
         new_local_facts = self.remove_empty_facts(new_local_facts)
         pop_obsolete_local_facts(new_local_facts)
+        pop_obsolete_local_roles(self.known_roles, new_local_facts)
 
         if new_local_facts != local_facts:
             changed = True
@@ -1270,6 +1261,7 @@ def main():
         argument_spec=dict(
             role=dict(default='common', required=False,
                       choices=OpenShiftFacts.known_roles),
+            system_facts=dict(type='dict', required=True),
             local_facts=dict(default=None, type='dict', required=False),
             additive_facts_to_overwrite=dict(default=[], type='list', required=False),
         ),
@@ -1277,10 +1269,8 @@ def main():
         add_file_common_args=True,
     )
 
-    module.params['gather_subset'] = ['hardware', 'network', 'virtual', 'facter']  # noqa: F405
-    module.params['filter'] = '*'  # noqa: F405
-
     role = module.params['role']  # noqa: F405
+    system_facts = module.params['system_facts']
     local_facts = module.params['local_facts']  # noqa: F405
     additive_facts_to_overwrite = module.params['additive_facts_to_overwrite']  # noqa: F405
 
@@ -1288,6 +1278,7 @@ def main():
 
     openshift_facts = OpenShiftFacts(role,
                                      fact_file,
+                                     system_facts,
                                      local_facts,
                                      additive_facts_to_overwrite)
 

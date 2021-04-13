@@ -4,7 +4,7 @@
 # In some cases, some services may be run as containers and docker may still
 # be installed via rpm.
 - import_tasks: common/atomic_proxy.yml
-  when: openshift_is_atomic
+  when: openshift_is_atomic | bool
 
 - name: Get current installed Docker version
   command: "{{ repoquery_installed }} --qf '%{version}' docker"
@@ -55,35 +55,7 @@
     get_mime: false
   register: docker_check
 
-- name: Set registry params
-  lineinfile:
-    dest: /etc/sysconfig/docker
-    regexp: '^{{ item.reg_conf_var }}=.*$'
-    line: "{{ item.reg_conf_var }}='{{ item.reg_fact_val | lib_utils_oo_prepend_strings_in_list(item.reg_flag ~ ' ') | join(' ') }}'"
-  when:
-  - item.reg_fact_val != []
-  - docker_check.stat.isreg is defined
-  - docker_check.stat.isreg
-  with_items:
-  - reg_conf_var: ADD_REGISTRY
-    reg_fact_val: "{{ l2_docker_additional_registries }}"
-    reg_flag: --add-registry
-  - reg_conf_var: BLOCK_REGISTRY
-    reg_fact_val: "{{ l2_docker_blocked_registries }}"
-    reg_flag: --block-registry
-  - reg_conf_var: INSECURE_REGISTRY
-    reg_fact_val: "{{ l2_docker_insecure_registries }}"
-    reg_flag: --insecure-registry
-  notify:
-  - restart container runtime
-
-- name: Place additional/blocked/insecure registries in /etc/containers/registries.conf
-  template:
-    dest: "{{ containers_registries_conf_path }}"
-    src: registries.conf.j2
-  when: openshift_docker_use_etc_containers | bool
-  notify:
-  - restart container runtime
+- include_tasks: update_registries.yml
 
 - name: Set Proxy Settings
   lineinfile:
@@ -112,7 +84,7 @@
     line: "OPTIONS='\
       {% if ansible_selinux.status | default(None) == 'enabled' and openshift_docker_selinux_enabled | default(true) | bool %} --selinux-enabled {% endif %} \
       {% if openshift_docker_log_driver %} --log-driver {{ openshift_docker_log_driver }}{% endif %} \
-      {% if l2_docker_log_options != [] %} {{ l2_docker_log_options |  lib_utils_oo_split() | lib_utils_oo_prepend_strings_in_list('--log-opt ') | join(' ')}}{% endif %} \
+      {% if l_docker_log_options != [] %} {{ l_docker_log_options |  lib_utils_oo_split() | lib_utils_oo_prepend_strings_in_list('--log-opt ') | join(' ')}}{% endif %} \
       {% if (openshift_docker_hosted_registry_insecure | bool) and openshift_docker_hosted_registry_network %} --insecure-registry={{ openshift_docker_hosted_registry_network }} {% endif %} \
       {% if docker_options is defined %} {{ docker_options }}{% endif %} \
       {% if openshift_docker_options %} {{ openshift_docker_options }}{% endif %} \

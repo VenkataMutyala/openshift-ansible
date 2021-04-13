@@ -7,6 +7,7 @@
   with_items: "{{ l_core_api_list }}"
   retries: 60
   delay: 5
+  when: (item != "build.openshift.io" and openshift_deployment_subtype == 'registry') or openshift_deployment_subtype != 'registry'
 
 - name: Get API logs
   command: >
@@ -16,7 +17,7 @@
   when: openshift_apis is failed
 
 - debug:
-    msg: "{{ control_plane_logs_api.stdout_lines }}"
+    msg: "{{ control_plane_logs_api.stderr_lines }}"
   when: openshift_apis is failed
 
 - fail:
@@ -30,7 +31,7 @@
     {{ openshift_client_binary }} --config={{ openshift.common.config_base }}/master/admin.kubeconfig get apiservices/v1beta1.metrics.k8s.io
   register: metrics_service_registration
   failed_when: metrics_service_registration.rc != 0 and 'NotFound' not in metrics_service_registration.stderr
-  retries: 30
+  retries: 60
   delay: 5
   until: metrics_service_registration is succeeded
 
@@ -39,7 +40,7 @@
     {{ openshift_client_binary }} --config={{ openshift.common.config_base }}/master/admin.kubeconfig get --raw /apis/metrics.k8s.io/v1beta1
   register: metrics_api
   until: metrics_api is succeeded
-  retries: 30
+  retries: 60
   delay: 5
   when: metrics_service_registration.rc == 0
 
@@ -48,7 +49,7 @@
     {{ openshift_client_binary }} --config={{ openshift.common.config_base }}/master/admin.kubeconfig get apiservices/v1beta1.servicecatalog.k8s.io
   register: servicecatalog_service_registration
   failed_when: servicecatalog_service_registration.rc != 0 and 'NotFound' not in servicecatalog_service_registration.stderr
-  retries: 30
+  retries: 60
   delay: 5
   until: servicecatalog_service_registration is succeeded
 
@@ -58,6 +59,6 @@
     {{ openshift_client_binary }} --config={{ openshift.common.config_base }}/master/admin.kubeconfig get --raw /apis/servicecatalog.k8s.io/v1beta1
   register: servicecatalog_api
   until: servicecatalog_api is succeeded
-  retries: 30
+  retries: 60
   delay: 5
   when: servicecatalog_service_registration.rc == 0

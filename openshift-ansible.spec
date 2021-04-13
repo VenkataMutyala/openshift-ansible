@@ -9,7 +9,7 @@
 %global __requires_exclude ^/usr/bin/ansible-playbook$
 
 Name:           openshift-ansible
-Version:        3.11.104
+Version:        3.11.420
 Release:        1%{?dist}
 Summary:        Openshift and Atomic Enterprise Ansible
 License:        ASL 2.0
@@ -190,6 +190,1406 @@ BuildArch:     noarch
 %{_datadir}/ansible/%{name}/test
 
 %changelog
+* Fri Apr 09 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.420-1
+- 
+
+* Thu Apr 08 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.419-1
+- 
+
+* Wed Apr 07 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.418-1
+- 
+
+* Tue Apr 06 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.417-1
+- 
+
+* Tue Apr 06 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.416-1
+- 
+
+* Mon Apr 05 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.415-1
+- 
+
+* Sun Apr 04 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.414-1
+- 
+
+* Sat Apr 03 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.413-1
+- 
+
+* Fri Apr 02 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.412-1
+- 
+
+* Thu Apr 01 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.411-1
+- 
+
+* Wed Mar 31 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.410-1
+- 
+
+* Tue Mar 30 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.409-1
+- 
+
+* Mon Mar 29 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.408-1
+- 
+
+* Sun Mar 28 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.407-1
+- 
+
+* Sat Mar 27 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.406-1
+- 
+
+* Thu Mar 25 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.405-1
+- 
+
+* Sun Mar 14 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.404-1
+- 
+
+* Sat Mar 13 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.403-1
+- 
+
+* Fri Mar 12 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.402-1
+- 
+
+* Thu Mar 11 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.401-1
+- 
+
+* Wed Mar 10 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.400-1
+- Move node fact initialization to basic_facts.yml (rteague@redhat.com)
+
+* Tue Mar 09 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.399-1
+- Do not use connection local with localhost (rteague@redhat.com)
+
+* Mon Mar 08 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.398-1
+- Pin zipp=3.4.0, Fixes image build issue (rteague@redhat.com)
+- Evaluate oo_nodes_to_upgrade before pre/config (rteague@redhat.com)
+
+* Sun Mar 07 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.397-1
+- 
+
+* Sat Mar 06 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.396-1
+- 
+
+* Fri Mar 05 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.395-1
+- Adding int typecasting for _component_cluster_size in
+  openshift_logging_elasticsearch handler task for restarting cluster
+  (ewolinetz@localhost.localdomain)
+
+* Sun Feb 21 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.394-1
+- 
+
+* Sat Feb 20 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.393-1
+- 
+
+* Fri Feb 19 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.392-1
+- [KIECLOUD-472] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for 7.10.0 release (fspolti@redhat.com)
+
+* Thu Feb 18 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.391-1
+- 
+
+* Thu Feb 18 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.390-1
+- 
+
+* Wed Feb 17 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.389-1
+- 
+
+* Wed Feb 17 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.388-1
+- 
+
+* Wed Feb 17 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.387-1
+- 
+
+* Tue Feb 09 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.386-1
+- Gather cluster_facts after version.yml during upgrade (rteague@redhat.com)
+
+* Mon Feb 08 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.385-1
+- 
+
+* Sun Feb 07 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.384-1
+- 
+
+* Sat Feb 06 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.383-1
+- 
+
+* Fri Feb 05 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.382-1
+- Fix string handling when setting facts (rteague@redhat.com)
+
+* Thu Feb 04 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.381-1
+- BZ#1920567 - patch to check if the ca-bundle.crt exists
+  (22072258+vwalek@users.noreply.github.com)
+- Pin PyJWT==1.7.1, Fixes image build issue (rteague@redhat.com)
+- Support upgrades of Kuryr compoments (maysa.macedo95@gmail.com)
+- [KIECLOUD-460] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for 7.9.1 release (fspolti@redhat.com)
+- Updating to correctly use ops cluster size if evaluating es-ops component
+  (ewolinet@redhat.com)
+
+* Mon Jan 25 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.380-1
+- 
+
+* Sun Jan 24 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.379-1
+- 
+
+* Sat Jan 23 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.378-1
+- 
+
+* Fri Jan 22 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.377-1
+- 
+
+* Thu Jan 21 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.376-1
+- 
+
+* Tue Jan 12 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.375-1
+- 
+
+* Mon Jan 11 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.374-1
+- 
+
+* Sun Jan 10 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.373-1
+- 
+
+* Sat Jan 09 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.372-1
+- 
+
+* Fri Jan 08 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.371-1
+- 
+
+* Fri Jan 08 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.370-1
+- 
+
+* Thu Jan 07 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.369-1
+- 
+
+* Wed Jan 06 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.368-1
+- 
+
+* Tue Jan 05 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.367-1
+- 
+
+* Mon Jan 04 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.366-1
+- 
+
+* Sun Jan 03 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.365-1
+- 
+
+* Sat Jan 02 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.364-1
+- 
+
+* Fri Jan 01 2021 AOS Automation Release Team <noreply@redhat.com> 3.11.363-1
+- 
+
+* Thu Dec 31 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.362-1
+- 
+
+* Wed Dec 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.361-1
+- 
+
+* Tue Dec 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.360-1
+- 
+
+* Mon Dec 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.359-1
+- 
+
+* Sun Dec 27 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.358-1
+- 
+
+* Sat Dec 26 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.357-1
+- 
+
+* Fri Dec 25 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.356-1
+- 
+
+* Thu Dec 24 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.355-1
+- 
+
+* Wed Dec 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.354-1
+- 
+
+* Wed Dec 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.353-1
+- 
+
+* Wed Dec 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.352-1
+- 
+
+* Tue Dec 22 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.351-1
+- 
+
+* Tue Dec 22 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.350-1
+- 
+
+* Mon Dec 21 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.349-1
+- 
+
+* Fri Dec 18 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.348-1
+- 
+
+* Fri Dec 18 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.347-1
+- Bug 1904767: network: default openshift_master_external_ip_network_cidrs to
+  empty (cdc@redhat.com)
+- Reorder the when checks to take into account the case that the named
+  certificates are not used and avoid the failure (david.peman@sysdig.com)
+- playbooks/openshift-node: Remove restart from join.yml (rteague@redhat.com)
+- ignore failed msg when running task Verify if the ca-bundle contains the CA
+  to trust the named certificate (22072258+vwalek@users.noreply.github.com)
+
+* Fri Dec 11 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.346-1
+- 
+
+* Fri Dec 11 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.345-1
+- 
+
+* Fri Dec 11 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.344-1
+- 
+
+* Mon Dec 07 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.343-1
+- 
+
+* Sun Dec 06 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.342-1
+- 
+
+* Sat Dec 05 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.341-1
+- 
+
+* Fri Dec 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.340-1
+- roles/openshift_facts: Set quay.io as default registry (rteague@redhat.com)
+
+* Fri Dec 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.339-1
+- 
+
+* Fri Dec 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.338-1
+- 
+
+* Thu Dec 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.337-1
+- 
+
+* Thu Dec 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.336-1
+- 
+
+* Thu Dec 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.335-1
+- 
+
+* Wed Dec 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.334-1
+- 
+
+* Tue Dec 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.333-1
+- 
+
+* Tue Dec 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.332-1
+- 
+
+* Tue Dec 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.331-1
+- 
+
+* Tue Dec 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.330-1
+- 
+
+* Mon Nov 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.329-1
+- 
+
+* Mon Nov 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.328-1
+- 
+
+* Mon Nov 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.327-1
+- 
+
+* Sun Nov 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.326-1
+- 
+
+* Sat Nov 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.325-1
+- 
+
+* Fri Nov 27 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.324-1
+- 
+
+* Thu Nov 26 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.323-1
+- 
+
+* Tue Nov 24 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.322-1
+- 
+
+* Mon Nov 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.321-1
+- 
+
+* Sun Nov 22 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.320-1
+- 
+
+* Sat Nov 21 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.319-1
+- playbooks/init: Validate openshift_master_named_certificates
+  (rteague@redhat.com)
+- openshift-cluster/upgrades: Allow openshift_kubelet_name_override when
+  filtering (rteague@redhat.com)
+- Revert "Bug 1860906: openshift-cluster/upgrades: Allow short nodes names when
+  filtering" (rteague@redhat.com)
+- playbooks/init: Fix GCP job when oo_masters is not defined
+  (rteague@redhat.com)
+
+* Thu Nov 12 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.318-1
+- openshift-cluster/upgrades: Allow short nodes names when filtering
+  (rteague@redhat.com)
+- playbooks/init: Refresh master facts during init (rteague@redhat.com)
+- [KIECLOUD-419] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for 7.9.0 release (fspolti@redhat.com)
+- playbooks/openshift-hosted: Use 'command' and tidy conditionals
+  (rteague@redhat.com)
+- roles/openshift_node: Update NetworkManager conf.d default
+  (rteague@redhat.com)
+- add php 7.2 into 3.11 cause cuppet says 7.1 will no longer work with sclorg
+  /cakephp-ex (centos as with for CI/e2e testing) (gmontero@redhat.com)
+- openshift_node: Drain nodes and restart during join.yml (rteague@redhat.com)
+- roles/openshift_version: Use only x.y version from first master
+  (rteague@redhat.com)
+- add php 7.2 into 3.11 cause cuppet says 7.1 will no longer work with sclorg
+  /cakephp-ex (gmontero@redhat.com)
+
+* Sun Nov 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.317-1
+- 
+
+* Sat Oct 31 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.316-1
+- 
+
+* Fri Oct 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.315-1
+- 
+
+* Thu Oct 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.314-1
+- 
+
+* Wed Oct 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.313-1
+- Update registry_auth.yml (47029841+a7vicky@users.noreply.github.com)
+- Wait for node to be ready' task should check that all vars are defined
+  (abhishekvicky18dec@gmail.com)
+
+* Tue Oct 27 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.312-1
+- 
+
+* Mon Oct 26 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.311-1
+- 
+
+* Sun Oct 25 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.310-1
+- 
+
+* Sat Oct 24 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.309-1
+- 
+
+* Fri Oct 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.308-1
+- roles/openshift_control_plane: Verify local API health (rteague@redhat.com)
+- removed trailing spaces (47029841+a7vicky@users.noreply.github.com)
+- Update upgrade_components.yml (47029841+a7vicky@users.noreply.github.com)
+- added node bootstrap autoapprover as part of upgrade component
+  (abhishekvicky18dec@gmail.com)
+
+* Thu Oct 22 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.307-1
+- Revert "Bug 1848454: OpenShift logging upgrade from 3.11.161 to 3.11.219
+  fails" (syedriko@redhat.com)
+- roles/openshift_peristent_volumes: Correct persistent-volume.yml template
+  (rteague@redhat.com)
+- playbooks/openshift-etcd: Ensure etcd CA is present on first etcd host
+  (rteague@redhat.com)
+- playbooks/container-runtime: Combine role import into one task
+  (rteague@redhat.com)
+- playbooks/openshift-node: Check for GlusterFS project during restart
+  (rteague@redhat.com)
+
+* Mon Oct 05 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.306-1
+- 
+
+* Sun Oct 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.305-1
+- 
+
+* Sat Oct 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.304-1
+- 
+
+* Fri Oct 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.303-1
+- 
+
+* Thu Oct 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.302-1
+- Bug 1882203 - fixes from PR (22072258+vwalek@users.noreply.github.com)
+- playbook for redeploy named certificates only
+  (22072258+vwalek@users.noreply.github.com)
+
+* Wed Sep 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.301-1
+- BZ-1883036 - adding option to not redeploy service signer even when
+  openshift_redeploy_openshift_ca=true
+  (22072258+vwalek@users.noreply.github.com)
+
+* Tue Sep 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.300-1
+- roles/openshift_master_certificates: Update node.kubeconfig
+  (rteague@redhat.com)
+- Bug 1848454: OpenShift logging upgrade from 3.11.161 to 3.11.219 fails
+  (syedriko@redhat.com)
+
+* Mon Sep 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.299-1
+- Detect an incomplete OpenShift CA redeployment (rteague@redhat.com)
+
+* Sun Sep 27 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.298-1
+- 
+
+* Sat Sep 26 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.297-1
+- 
+
+* Fri Sep 25 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.296-1
+- roles/openshift_master_certificates: Update bootstrap.kubeconfig
+  (rteague@redhat.com)
+
+* Thu Sep 24 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.295-1
+- 
+
+* Wed Sep 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.294-1
+- 
+
+* Tue Sep 22 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.293-1
+- 
+
+* Mon Sep 21 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.292-1
+- 
+
+* Sun Sep 20 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.291-1
+- 
+
+* Sat Sep 19 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.290-1
+- Pin pyrsistent to 0.16.1 (syedriko@redhat.com)
+
+* Fri Sep 18 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.289-1
+- 
+
+* Thu Sep 17 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.288-1
+- 
+
+* Wed Sep 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.287-1
+- [KIECLOUD-418] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for release 7.8.1 (fspolti@redhat.com)
+- Add --force and --grace-period options to SDN pod delete (rteague@redhat.com)
+- Use Ansible 2.9.13 for testing (rteague@redhat.com)
+- Fix docker_storage health check (rteague@redhat.com)
+
+* Fri Sep 11 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.286-1
+- 
+
+* Wed Sep 09 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.285-1
+- 
+
+* Tue Sep 08 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.284-1
+- 
+
+* Tue Sep 08 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.283-1
+- 
+
+* Tue Sep 08 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.282-1
+- 
+
+* Mon Sep 07 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.281-1
+- 
+
+* Sun Sep 06 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.280-1
+- 
+
+* Sat Sep 05 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.279-1
+- 
+
+* Fri Sep 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.278-1
+- 
+
+* Thu Sep 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.277-1
+- 
+
+* Wed Sep 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.276-1
+- release-3.11: Gather initialization facts for all masters
+  (rteague@redhat.com)
+
+* Tue Sep 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.275-1
+- logging_elasticsearch: disable system_call_filter check on non-amd64
+  architectures (yselkowi@redhat.com)
+
+* Mon Aug 31 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.274-1
+- 
+
+* Sun Aug 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.273-1
+- Pin dogpile.cache (rteague@redhat.com)
+- Bug 1867134: Remove log-openvswitch mount from ovs daemonset
+  (suryaseetharaman.9@gmail.com)
+- Update CloudForms 4.7 templates for HTTPD headers (simaishi@redhat.com)
+
+* Tue Aug 18 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.272-1
+- 
+
+* Mon Aug 17 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.271-1
+- 
+
+* Mon Aug 17 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.270-1
+- 
+
+* Sun Aug 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.269-1
+- 
+
+* Sat Aug 15 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.268-1
+- 
+
+* Fri Aug 14 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.267-1
+- 
+
+* Thu Aug 13 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.266-1
+- 
+
+* Wed Aug 12 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.265-1
+- Ensure port/subport created by heat has tags if Kuryr is used
+  (ltomasbo@redhat.com)
+
+* Tue Aug 11 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.264-1
+- Adjust amphora VM default ranges (ltomasbo@redhat.com)
+
+* Mon Aug 10 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.263-1
+- 
+
+* Sun Aug 09 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.262-1
+- 
+
+* Sat Aug 08 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.261-1
+- 
+
+* Fri Aug 07 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.260-1
+- 
+
+* Thu Aug 06 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.259-1
+- 
+
+* Wed Aug 05 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.258-1
+- 
+
+* Tue Aug 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.257-1
+- 
+
+* Mon Aug 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.256-1
+- cors allowed origin to limit changing url protocol (jstuever@redhat.com)
+
+* Sun Aug 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.255-1
+- 
+
+* Sat Aug 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.254-1
+- 
+
+* Fri Jul 31 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.253-1
+- 
+
+* Thu Jul 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.252-1
+- [KIECLOUD-397] - 7.8.0 - Update RHPAM and RHDM templates/adocs files and
+  templates on ocp catalog. (fspolti@redhat.com)
+
+* Wed Jul 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.251-1
+- 
+
+* Tue Jul 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.250-1
+- addressing issue when doing fresh install (ewolinet@redhat.com)
+- Fix #12209 - regenerate logging certs (andrej.golis@gmail.com)
+
+* Mon Jul 27 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.249-1
+- allow bypassing of replacing fluentd configmap (ewolinet@redhat.com)
+- making lists unique for handler restarts (ewolinet@redhat.com)
+
+* Thu Jul 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.248-1
+- 
+
+* Thu Jul 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.247-1
+- 
+
+* Thu Jul 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.246-1
+- 
+
+* Thu Jul 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.245-1
+- 
+
+* Thu Jul 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.244-1
+- 
+
+* Wed Jul 15 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.243-1
+- 
+
+* Tue Jul 14 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.242-1
+- Correct GCP group mapping for infra and compute (rteague@redhat.com)
+
+* Thu Jul 09 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.241-1
+- 
+
+* Thu Jul 09 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.240-1
+- 
+
+* Tue Jul 07 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.239-1
+- 
+
+* Tue Jul 07 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.238-1
+- Ensure kuryr resources are tagged (ltomasbo@redhat.com)
+
+* Fri Jul 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.237-1
+- 
+
+* Thu Jul 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.236-1
+- 
+
+* Wed Jul 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.235-1
+- 
+
+* Tue Jun 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.234-1
+- 
+
+* Mon Jun 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.233-1
+- Adjust Kuryr probes (ltomasbo@redhat.com)
+- Fix #12187 (blockloop@users.noreply.github.com)
+- Bug 1841439: fix configmaps overriding curator.yaml
+  (blockloop@users.noreply.github.com)
+- Create configmaps for all items in openshift_node_groups (rteague@redhat.com)
+
+* Mon Jun 08 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.232-1
+- 
+
+* Sun Jun 07 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.231-1
+- 
+
+* Sat Jun 06 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.230-1
+- 
+
+* Fri Jun 05 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.229-1
+- 
+
+* Thu Jun 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.228-1
+- 
+
+* Wed Jun 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.227-1
+- 
+
+* Tue Jun 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.226-1
+- 
+
+* Tue Jun 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.225-1
+- 
+
+* Mon Jun 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.224-1
+- 
+
+* Sun May 31 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.223-1
+- 
+
+* Sat May 30 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.222-1
+- 
+
+* Fri May 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.221-1
+- gluster: use memory (tmpfs) emptydir for glusterfs-run volume
+  (jmulligan@redhat.com)
+
+* Thu May 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.220-1
+- Added expiration checks for aggregator-proxy certs (lstanton@redhat.com)
+- [KIECLOUD-390] - Update RHPAM and RHDM templates adocs files and templates on
+  ocp catalog. (fspolti@redhat.com)
+- Update OpenStack and Kuryr reviewers/approvers (ltomasbo@redhat.com)
+- [Bug 1828433] Bump up etcd release to 3.2.28 (gabriel.mainberger@vshn.net)
+- Updating ES restart policy to allow primaries be placed and allow yellow
+  status before continuing (ewolinet@redhat.com)
+
+* Wed May 20 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.219-1
+- Add support for global namespaces and removal of remote_group_id
+  (ltomasbo@redhat.com)
+
+* Mon May 18 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.218-1
+- Add support to configure subnetpool prefixlen at Kuryr (ltomasbo@redhat.com)
+- Use variable for EPEL RPM URL for CentOS (rteague@redhat.com)
+- Generate htpaswd inside hawkular metrics container (ruben.vargas@aluxoft.com)
+- Add six month expiry check back to upgrades (rteague@redhat.com)
+- Remove cert expiry check during cert redeploy (rteague@redhat.com)
+- API server use the local etcd instance first (Scaleup)
+  (gabriel.mainberger@vshn.net)
+- Add a description to set the local etcd instance as primary entry
+  (gabriel.mainberger@vshn.net)
+- API server use the local etcd instance first (gabriel.mainberger@vshn.net)
+- Enable EPEL repo for openshift origin install on CentOS (rteague@redhat.com)
+- Remove hard coded openshift_certificate_expiry_warning_days
+  (rteague@redhat.com)
+- Copy the htpasswd using local action (ruben.vp8510@gmail.com)
+- Ensure all nodes are populated in inventory groups (rteague@redhat.com)
+- Add conditional to fix openshift_master_cluster_hostname check
+  (rteague@redhat.com)
+- Bug 1824056: fix task name for removal of openshift-monitoring project
+  (pawel@krupa.net.pl)
+- Add /usr/share/pki to sync pod (rteague@redhat.com)
+- use openshift3/registry-console instead of cockpit/kubernetes with origin
+  deployment (mostafa.hussein91@gmail.com)
+- Fix namespace for rh-operators.configmap.yaml (richardt@comcarde.com)
+- Remove OVS pod force grace-period 0 on upgrade (gabriel.mainberger@vshn.net)
+- Update EAP CD 18 imagestreams and templates (ken@zaptillion.net)
+- Added several features and fixed bugs (pvijayaragav@juniper.net)
+- Don't abort if ElasticSearch is slow (manuel@hutter.io)
+- fix failed to get stats (vanloswang@126.com)
+- Added output to master-restart. Avoid searchs and serves as doc
+  (sergioperez794@gmail.com)
+- Possibility to define nodeSelector for hawkular-metrics-schema job
+  (jmartisk@redhat.com)
+
+* Tue May 05 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.217-1
+- 
+
+* Thu Apr 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.216-1
+- 
+
+* Wed Apr 22 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.215-1
+- Update GCE image disk size (build_image) (rteague@redhat.com)
+- Update GCE image disk size (rteague@redhat.com)
+
+* Tue Apr 21 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.214-1
+- Install rh-operators in the correct namespace (agreene@redhat.com)
+
+* Mon Apr 20 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.213-1
+- 
+
+* Sun Apr 19 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.212-1
+- 
+
+* Sat Apr 18 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.211-1
+- 
+
+* Fri Apr 17 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.210-1
+- 
+
+* Thu Apr 16 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.209-1
+- 
+
+* Wed Apr 15 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.208-1
+- 
+
+* Tue Apr 14 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.207-1
+- 
+
+* Mon Apr 13 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.206-1
+- 
+
+* Sun Apr 12 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.205-1
+- 
+
+* Sat Apr 11 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.204-1
+- 
+
+* Fri Apr 10 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.203-1
+- 
+
+* Thu Apr 09 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.202-1
+- 
+
+* Wed Apr 08 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.201-1
+- fix for docker build issue (waliaritesh@gmail.com)
+- Fix CRDs names on Kuryr tasks (maysa.macedo95@gmail.com)
+- [KIECLOUD-369] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for release 7.7.0 (fspolti@redhat.com)
+
+* Sun Mar 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.200-1
+- 
+
+* Sat Mar 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.199-1
+- 
+
+* Fri Mar 27 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.198-1
+- 
+
+* Thu Mar 26 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.197-1
+- 
+
+* Wed Mar 25 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.196-1
+- 
+
+* Tue Mar 24 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.195-1
+- 
+
+* Mon Mar 23 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.194-1
+- 
+
+* Sun Mar 22 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.193-1
+- 
+
+* Sat Mar 21 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.192-1
+- 
+
+* Fri Mar 20 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.191-1
+- 
+
+* Thu Mar 19 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.190-1
+- 
+
+* Wed Mar 18 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.189-1
+- 
+
+* Thu Mar 12 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.188-1
+- 
+
+* Sun Mar 08 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.187-1
+- 
+
+* Sat Mar 07 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.186-1
+- 
+
+* Fri Mar 06 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.185-1
+- Adding Prometheus 0.23.2 (madorn@gmail.com)
+
+* Thu Mar 05 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.184-1
+- 
+
+* Wed Mar 04 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.183-1
+- 
+
+* Tue Mar 03 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.182-1
+- 
+
+* Mon Mar 02 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.181-1
+- 
+
+* Sun Mar 01 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.180-1
+- 
+
+* Sat Feb 29 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.179-1
+- 
+
+* Fri Feb 28 2020 AOS Automation Release Team <noreply@redhat.com> 3.11.178-1
+- 
+
+* Thu Feb 27 2020 AOS Automation Release Team <aos-team-art <noreply@redhat.com>> 3.11.177-1
+- 
+
+* Wed Feb 26 2020 AOS Automation Release Team <aos-team-art <noreply@redhat.com>> 3.11.176-1
+- Delete container.yaml (lmeyer@redhat.com)
+- add any_errors_fatal (jcallen@redhat.com)
+- set openshift_certificate_expiry_warning_days to 6 months vs 365 days
+  (jcallen@redhat.com)
+- Certificate expiration misses node certificates (jcallen@redhat.com)
+
+* Tue Feb 25 2020 AOS Automation Release Team <aos-team-art <noreply@redhat.com>> 3.11.175-1
+- 
+
+* Mon Feb 24 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.174-1
+- 
+
+* Sun Feb 23 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.173-1
+- 
+
+* Sat Feb 22 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.172-1
+- 
+
+* Fri Feb 21 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.171-1
+- roles/openshift_cluster_monitoring_operator: configure retention
+  (sergiusz.urbaniak@gmail.com)
+- Fix cluster monitoring operator config map with etcd (spasquie@redhat.com)
+- gluster: fix how lvm wrapper is passed to heketi templates
+  (jmulligan@redhat.com)
+- Remove variable from logging task name (rteague@redhat.com)
+- Use Ansible 2.9.4 for testing (rteague@redhat.com)
+- [KIECLOUD-317] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for release 7.6.0 (fspolti@redhat.com)
+
+* Mon Feb 03 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.170-1
+- 
+
+* Sun Feb 02 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.169-1
+- 
+
+* Sat Feb 01 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.168-1
+- 
+
+* Fri Jan 31 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.167-1
+- 
+
+* Thu Jan 30 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.166-1
+- Fix to rename ovirt_vms to ovirt_vm (bward@redhat.com)
+- Update owners for monitoring components (spasquie@redhat.com)
+- Support monitoring of etcd with cluster monitoring operator
+  (spasquie@redhat.com)
+- metrics_server: add nodes resource to aggregated-metrics-reader
+  (sergiusz.urbaniak@gmail.com)
+- roles/openshift_storage_glusterfs/OWNERS add nixpanic (sdodson@redhat.com)
+- update roles/openshift_storage_glusterfs/OWNERS (sdodson@redhat.com)
+- gluster: set HEKETI_LVMWRAPPER during the initial heketi deployment
+  (ndevos@redhat.com)
+- gluster: Heketi template does not contain LVM-wrapper on containerized
+  deployment (ndevos@redhat.com)
+
+* Thu Jan 16 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.165-1
+- 
+
+* Wed Jan 15 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.164-1
+- 
+
+* Tue Jan 14 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.163-1
+- 
+
+* Mon Jan 13 2020 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.162-1
+- [Bug 1744900] Bump up etcd release to 3.2.26 (skolicha@redhat.com)
+- gluster: do not enable hostPID for glusterfs-server pods (ndevos@redhat.com)
+- Cockpit should initialize before OpenShift SDN for avoid saving unexpected
+  iptables rules (bysnupy@hotmail.com)
+
+* Tue Dec 24 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.161-1
+- 
+
+* Thu Dec 19 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.160-1
+- gluster: configure pod template to enable support for nsenter
+  (ndevos@redhat.com)
+
+* Wed Dec 18 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.159-1
+- 
+
+* Tue Dec 17 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.158-1
+- Fix for bug 1755120, when key is undefined ansible sets unicode
+  (rhowe@redhat.com)
+- gluster: add env variable to run Heketis LVM commands through a wrapper
+  (ndevos@redhat.com)
+- [KIECLOUD-336] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for release 7.5.1 (fspolti@redhat.com)
+- [GlusterFS]: Doc updates (dpivonka@redhat.com)
+- Bug 1753593 - [Reg] openshift_logging_elasticsearch_kibana_index_mode cannot
+  be changed by inventory variable (nhosoi@redhat.com)
+- Set arp_announce=2 (farandac@redhat.com)
+
+* Mon Dec 02 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.157-1
+- Insered a missing "endif" (martin@dermac.de)
+
+* Mon Nov 25 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.156-1
+- 
+
+* Sun Nov 24 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.155-1
+- Ensure openshift_master_cluster_hostname is set when deploying multiple
+  masters (rteague@redhat.com)
+- Remove obsolete roles from local openshift.fact (rteague@redhat.com)
+- Fix openshift_health_checker sdn.py key error (rteague@redhat.com)
+- Update Fuse templates with 7.5 release (antonin@stefanutti.fr)
+- Add logging certificate redeploy to main redeploy playbook
+  (rteague@redhat.com)
+- Bug 1747307 - The redeploy-certificates.yml failed when ops is enabled
+  (nhosoi@redhat.com)
+- Increase the timeout for restart (anbhat@redhat.com)
+- Use Ansible 2.9.1 for testing (rteague@redhat.com)
+- Fix web console URL (rteague@redhat.com)
+- revert change of update-ca-trust extract (jcallen@redhat.com)
+- Bug 1765646: Fluentd single pod logging performance regression 3.x
+  (rmeggins@redhat.com)
+- tox (jcallen@redhat.com)
+- GCP still failing CI. Remove `update-ca-trust extract` (jcallen@redhat.com)
+- Remove import playbook restart (jcallen@redhat.com)
+- Fix gluster after restart change (jcallen@redhat.com)
+- Create configmaps only for used openshift_node_group_names
+  (rteague@redhat.com)
+- Update EAP CD to CD 17 (ken@zaptillion.net)
+
+* Mon Nov 11 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.154-2
+- manually bump release version of openshift-ansible (aos-team-art@redhat.com)
+- Fix test_image for additional registries (rteague@redhat.com)
+- IGMP was blocked on the nodes which was preventing the IGMP queries from
+  reaching Linux and sending back IGMP reports of joined multicast groups So,
+  it stop forwarding multicast traffic after some time since it couldn’t
+  snoop on IGMP and verify if the nodes still need to receive those multicast
+  groups (abhisheksharmay2k@gmail.com)
+- [KIECLOUD-316] - Update RHPAM and RHDM templates and imagestreams on
+  OpenShift Service Catalog for release 7.5.0 (fspolti@redhat.com)
+- Bug 1767111 - logging - expose undefined field, multiline parameters
+  (rmeggins@redhat.com)
+- ignore failure on master (glykos@gmx.net)
+
+* Thu Oct 31 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.154-1
+- add restart (jcallen@redhat.com)
+- Escape literals in regex for test image (rteague@redhat.com)
+- metrics_server: Add ClusterRole to allow users to access metrics API
+  (fbranczyk@gmail.com)
+- Fix satellite subscription registration (rteague@redhat.com)
+- Allow custom mirrored registry paths (rteague@redhat.com)
+- Update docs to indicate that changing  will break install
+  (cdouglas@redhat.com)
+- Ensure openshift_metrics_install_metrics defaults are set
+  (rteague@redhat.com)
+- Updating kibana-proxy {http,https,no}_proxy variable sources
+  (ewolinet@redhat.com)
+- Fix redploy-certificates (metrics server) (rteague@redhat.com)
+- amended as per ewolinetz request (dofinn@redhat.com)
+- Add CA to system trust (jcallen@redhat.com)
+- Back up certificates on all masters (rteague@redhat.com)
+- openshift_facts: add more json facts (vrutkovs@redhat.com)
+- roles/openshift_cluster_monitoring_operator: remove limits
+  (pkrupa@redhat.com)
+- JKS renewal bug (dofinn@redhat.com)
+- Increase timeout for control plane pod checks (rteague@redhat.com)
+- Add possibility to use certs on master as source (christian.meissner
+  @unbelievable-machine.com)
+- JKS renewal bug (dofinn@redhat.com)
+- Modify the default kuryr images (ltomasbo@redhat.com)
+
+* Wed Oct 16 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.153-2
+- Fix upgrade not respecting openshift_pkg_version (rteague@redhat.com)
+- [GlusterFS]: revert heketi block secret type (dpivonka@redhat.com)
+- [GlusterFS]: Warn that the health check could take a long time
+  (dpivonka@redhat.com)
+
+* Thu Oct 10 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.153-1
+- fixed the security group tagging.  also, don't re-create the _k8s sg's if
+  they are there, openshift manages these sg's (mwoodson@redhat.com)
+- [Glusterfs]: Check image tag versions earlier in the upgrade
+  (dpivonka@redhat.com)
+- [GlusterFS]: Change init/main vars for upgrade playbook to limit nodes sanity
+  checks is run on (dpivonka@redhat.com)
+
+* Sun Oct 06 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.152-1
+- 
+
+* Sat Oct 05 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.151-1
+- 
+
+* Fri Oct 04 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.150-1
+- [GlusterFS]: Use openshift_master_api_port var in task Delete glusterfs
+  daemonset w/o cascade (dpivonka@redhat.com)
+
+* Thu Oct 03 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.149-1
+- 
+
+* Thu Oct 03 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.148-1
+- check if delete was succesful (dpivonka@redhat.com)
+- Mount the parent dir in daemonset configuration for openshift-sdn
+  (anbhat@redhat.com)
+- Fixing NSX role templates to refer correct variable for clusterip
+  (travi@redhat.com)
+
+* Wed Oct 02 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.147-1
+- [GlusterFS]: fix cluster health check retry variable (dpivonka@redhat.com)
+- [GlusterFS]: fix mismatched var in upgrade playbook warning
+  (dpivonka@redhat.com)
+- Add label to kuryr-controller (ltomasbo@redhat.com)
+- Bug 1752532: upgrade from 3.11 failed to upgrade es settings from configmap
+  (rmeggins@redhat.com)
+- Bug 1645725: Increase timeout for Docker images and creds
+  (padillon@redhat.com)
+- Fix rbac aggregation for OLM (cordell.evan@gmail.com)
+- Update roles/openshift_storage_glusterfs/defaults/main.yml (mail@pm92.de)
+- Update main.yml (mail@pm92.de)
+- Modify mounts when using atomic during imageconfig if oreg username is
+  defined (jcallen@redhat.com)
+- Bug 1747307 - The redeploy-certificates.yml failed when ops is enabled
+  (nhosoi@redhat.com)
+- Bug 1747305 - Couldn't regenerate the cert if the /etc/origin/logging is
+  deleted (nhosoi@redhat.com)
+- change var name and conditional (dpivonka@redhat.com)
+- [GlusterFS]: Update pod name so previously created heketi key can be found
+  (dpivonka@redhat.com)
+- [GlusterFS]: Add a var to make user acknowledged that upgrade playbook is in
+  tech preview (dpivonka@redhat.com)
+- [GlusterFS]: Install specific  glusterfs-fuse version mentioned
+  (sarumuga@redhat.com)
+- [GlusterFS]: unique names for glusterblock provisioner name
+  (sarumuga@redhat.com)
+- Variables to specify failureThreshold for Hawkular probes
+  (jmartisk@redhat.com)
+
+* Thu Sep 12 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.146-1
+- Add RHEL 7.5 to minimum kernel version (rteague@redhat.com)
+- Update registries.conf during upgrades (rteague@redhat.com)
+- Clean up container_runtime role (rteague@redhat.com)
+- [GlusterFS]: include varaible at runtime for cluster health
+  (sarumuga@redhat.com)
+- Update Fuse templates with 7.4 release (antonin@stefanutti.fr)
+
+* Tue Sep 10 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.145-1
+- Update minimum required kernel version (rteague@redhat.com)
+
+* Sun Sep 08 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.144-1
+- Validate openshift_master_ca_certificate and ca.crt (jcallen@redhat.com)
+- Bug 1735502: compare solely md5sum for config change, not default md5sum
+  output which includes file name (aconstan@redhat.com)
+
+* Thu Sep 05 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.143-1
+- Ensure minimum kernel version (rteague@redhat.com)
+- Add metrics-server redeploy certificate playbook (jcallen@redhat.com)
+
+* Tue Sep 03 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.142-1
+- Update the docs about default downstream kuryr images (ltomasbo@redhat.com)
+- Bug 1741713. Omit build api in standalone registry
+  (50153379+coberry87@users.noreply.github.com)
+- Add image tag to test image for registry_auth (rteague@redhat.com)
+- roles: switch to CMO image which is automatically build by our CI
+  (pkrupa@redhat.com)
+- Ensure port 10250 is accessible from nodes/pods (ltomasbo@redhat.com)
+- Fix incorrect label "metrics-infra" to "metrics-server-infra"
+  (bysnupy@hotmail.com)
+- Correct dockergc service account namespace (rteague@redhat.com)
+- [KIECLOUD-292] - Update RHPAM and RHMD templates and imagestreams on
+  OpenShift Service Catalog for release 7.4.1 (fspolti@redhat.com)
+- Option to use openshift_metrics_cassandra_pvc_name to denote exact name of
+  PVC to be used by hawkular-cassandra (jmartisk@redhat.com)
+
+* Sun Aug 25 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.141-1
+- 
+
+* Thu Aug 22 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.140-1
+- Update usage of 'oc replace' (rteague@redhat.com)
+- pass http/s proxy env variables to kibana (patlachance@gmail.com)
+
+* Thu Aug 22 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.139-1
+- 
+
+* Tue Aug 20 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.138-1
+- address issue where kibana proxy related secrets and certs werent updated
+  when regenerating other component certs (ewolinet@redhat.com)
+
+* Sun Aug 18 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.137-1
+- Bug 1732154: Explicitly pass storage class var to logging role
+  (jcantril@redhat.com)
+- [GlusterFS]: Fix version check avoiding minor version comparison
+  (sarumuga@redhat.com)
+- Bug 1735751: avoid excessive dentries due to console liveness probe
+  (spadgett@redhat.com)
+- Use htpasswd hawkular metrics utility to generate SHA256 FIPS compliant
+  hashes (ruben.vp8510@gmail.com)
+- Fix ca node sync always applying certificate (jcallen@redhat.com)
+- Only delete and regenerate service signer cert when updating CA
+  (jcallen@redhat.com)
+- Increase wait for aggregated API availability (rteague@redhat.com)
+- Convert Ansible service broker secrets to json instead of yaml
+  (gabriel.mainberger@vshn.net)
+- Configure Ansible service broker secrets (simon.ruegg@vshn.ch)
+- [KIECLOUD-268] - Update RHPAM and RHMD templates and imagestreams on
+  OpenShift Service Catalog for release 7.4.0 (fspolti@redhat.com)
+- Update l_docker_creds_test_image (rteague@redhat.com)
+- Fixing generate_secret for redeploy-certificates and fixing up checkpoint
+  names (ewolinet@redhat.com)
+- [GlusterFS]: Upgrade playbook is supported for converged mode only. If
+  upgrade playbook is run for independent mode, fail with a message.
+  (sarumuga@redhat.com)
+
+* Sun Aug 04 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.136-1
+- [GlusterFS]: variable to skip brick size check (sarumuga@redhat.com)
+- Get heketi_pod name before invoking heketi-cli command. (sarumuga@redhat.com)
+
+* Thu Aug 01 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.135-1
+- Add ANSIBLE_CONFIG to tox.ini (rteague@redhat.com)
+- Ensure cni port does not collide with kernel reserved ports
+  (ltomasbo@redhat.com)
+- [GlusterFS]: Fix registry daemonset deletion as part of upgrade.
+  (sarumuga@redhat.com)
+- [Glusterfs]: Ensure that all versions mentioned in image tag is same.
+  (sarumuga@redhat.com)
+- [Glusterfs]: Bring down the number of retries attempted for upgrade playbook.
+  (sarumuga@redhat.com)
+- [KIECLOUD-202] - Update OpenShift catalog for RHIPS/DS 6.4.12
+  (fspolti@redhat.com)
+
+* Tue Jul 30 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.134-1
+- Adding openshift_node_local_quota_per_fsgroup parameter creates incorrect
+  node config. Fixes BZ 1728195 (sgaikwad@redhat.com)
+
+* Sun Jul 28 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.133-1
+- 
+
+* Thu Jul 25 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.132-1
+- 
+
+* Tue Jul 23 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.131-1
+- 
+
+* Sun Jul 21 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.130-1
+- [Glusterfs] Before upgrade, check for pending heketi operations. Still
+  proceed with the upgrade after timeout. (sarumuga@redhat.com)
+- Update config.yml (sgaikwad@redhat.com)
+- Update config.yml (sgaikwad@redhat.com)
+- Modify Updating vm.max_map_count value task to create 99-elasticsearch.conf
+  file when vm.max_map_count is set to <= 262144 (sgaikwad@redhat.com)
+- Addressing missing es_dc_index for ops install and adding assert for
+  hostmount_path (ewolinet@redhat.com)
+- Fix web console deployment conditional (rteague@redhat.com)
+- Wait the new scale group nodes to be ready before drain the nodes
+  (haowang@redhat.com)
+- Switch to the new default storage class annotation (mharri@redhat.com)
+
+* Wed Jul 10 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.129-1
+- Setup NetworkManager script before starting dnsmasq
+  (bennett.novak@rackspace.com)
+- restart.yml - check gluster health before and after restart
+  (itewk@redhat.com)
+- Kube Proxy needed to be deployed for ACI to run as a part of upgrade from
+  3.10 to 3.11 (abhisheksharmay2k@gmail.com)
+- translate_idps: use py3-specific infinity number if available
+  (vrutkovs@redhat.com)
+- kube-proxy, namespace and firewalld corrections (pvijayaragav@juniper.net)
+
+* Sun Jul 07 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.128-1
+- Adds current docker-registry route hostname when generating the new certs.
+  (jtudelag@redhat.com)
+- GlusterFS: Fix version image check (sarumuga@redhat.com)
+- GlusterFS: Remove the default values used for keys (sarumuga@redhat.com)
+
+* Thu Jul 04 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.127-1
+- 
+
+* Tue Jul 02 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.126-1
+- Fix small typo in task name (candace.aleea@gmail.com)
+- Update tox test environment vars (rteague@redhat.com)
+- Fix indentation on Kuryr volumes (mdulko@redhat.com)
+- openvswtich logrotate is missing due to sdn container change
+  (pcameron@redhat.com)
+
+* Sun Jun 30 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.125-1
+- 
+
+* Thu Jun 27 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.124-1
+- Ensure default vars are loaded for sanity checks (rteague@redhat.com)
+- Add openshift ca to trust via node sync (jcallen@redhat.com)
+- Fix openshift_logging_elasticsearch handler (Ansible 2.8)
+  (rteague@redhat.com)
+- endpoint is missing as part of ClusterRole rule. This in turn throws a error
+  when gluster-block pod is provisioned. (sarumuga@redhat.com)
+- Contrail namespace edited (pvijayaragav@juniper.net)
+- Remove subPaths when mounting Kuryr pods volumes (mdulko@redhat.com)
+
+* Thu Jun 20 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.123-1
+- openshift_facts: fix MTU detection
+  (52029485+LarryCotarbais@users.noreply.github.com)
+
+* Wed Jun 19 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.122-1
+- Bug 1718142 - Redeploy catalog/broker certs (fabian@fabianism.us)
+- Fix: generate hawkular-cassandra pvc (dynamic)
+  (lorenzo.digiacomo85@gmail.com)
+
+* Tue Jun 18 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.121-1
+- 
+
+* Tue Jun 18 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.120-1
+- Juniper Contrail SDN patch ** Contrail SDN ** (pvijayaragav@juniper.net)
+- Fix issue with metrics undefined l_kubelet_node_name (jcallen@redhat.com)
+- Run networkmanager and selinux checks in prereqs (rteague@redhat.com)
+- Fix restart_pods.yml (rteague@redhat.com)
+- Updates changes service catalog certificate for Ansible 2.8
+  (jcallen@redhat.com)
+- Supply namespace when generating hawkular role binding (jmartisk@redhat.com)
+
+* Thu Jun 13 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.119-1
+- Fix module_results for recent commits (rteague@redhat.com)
+- Update glusterfs_uninstall.yml (anton.mark@gmail.com)
+- Add redeploy cert for service catalog, asb and tsb (jcallen@redhat.com)
+- Bump to Ansible 2.8.1 for bug fixes (rteague@redhat.com)
+- Clean up additional bare vars in openshift-management (rteague@redhat.com)
+- If managed registry is false modify example ImageStream referencePolicy
+  (jcallen@redhat.com)
+- Fix lib_utils and lib_openshift integration tests (rteague@redhat.com)
+- Update roles/openshift_metrics/templates/hawkular_cassandra_rc.j2
+  (AdlerFleurant@users.noreply.github.com)
+- Update roles/openshift_metrics/templates/hawkular_cassandra_rc.j2
+  (AdlerFleurant@users.noreply.github.com)
+- Fix timeoutSeconds in hawkular-cassandra
+  (AdlerFleurant@users.noreply.github.com)
+- Remove invalid changed_when usage (rteague@redhat.com)
+- Custom module refactor for Ansible 2.8 (rteague@redhat.com)
+- Validate Ansible 2.8 for release-3.11 (rteague@redhat.com)
+
+* Tue Jun 11 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.118-1
+- Remove kuryrnet handler from default kuryr configuration
+  (ltomasbo@redhat.com)
+
+* Sun Jun 09 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.117-1
+- [3.11]: allow cluster autoscaler to evict pods (jchaloup@redhat.com)
+- Add EAP CD 16 imagestreams & templates (ken@zaptillion.net)
+- Clean up Ansible Service Broker Configmap (rteague@redhat.com)
+- Bug 1585070: remove cpu_manager_state file (rphillips@redhat.com)
+
+* Wed Jun 05 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.116-1
+- Correct data type of "openshift_master_audit_config" parameters
+  (bysnupy@hotmail.com)
+- Fail on Ansible 2.8 (rteague@redhat.com)
+- Workaround missing network metrics when using cri-o (jcallen@redhat.com)
+- Update main.yml (crmarquesjc@gmail.com)
+- Added mandatory missing argument "system_facts" on openshift_facts module
+  (hector_vido@yahoo.com.br)
+- retries (carlos.marques@bndes.gov.br)
+- Enable ports population for new namespaces (ltomasbo@redhat.com)
+- Test using Ansible 2.7.11 (rteague@redhat.com)
+- Make readinessProbe timeout configurable and add initialDelaySeconds
+  (ruben.vp8510@gmail.com)
+- Remove deprecated openshift_ip host variable. (padillon@redhat.com)
+- Handle deprecated openshift_set_node_ip variable. (padillon@redhat.com)
+- Add "openshift_master_audit_policyfile" to specify user-defined audit policy
+  file (bysnupy@hotmail.com)
+- creating playbook to do logging cert rotation and update secrets and redeploy
+  pods (ewolinet@redhat.com)
+- [KIECLOUD-214] - Update RHDM and RHPAM 7.3.1 templates on OCP and OSO service
+  catalog (fspolti@redhat.com)
+- openshift_node: always check for missing TCMU iSCSI device entry
+  (jarrpa@redhat.com)
+- GlusterFS: Fix brick capacity detection in health check (jarrpa@redhat.com)
+- Update patch_configmap_file.yaml (candace.aleea@gmail.com)
+- Tar node & volume config to do md5sum comparison in sync pod.
+  (pdd@redhat.com)
+- metrics-server: Add node selector variable (fbranczyk@gmail.com)
+- Avoid duplicate env vars in router deploymentconfig
+  (miciah.masters@gmail.com)
+- Revert "Check for changes to volume-config in sync pod." (pdd@redhat.com)
+
+* Thu May 09 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.115-1
+- Remove bash debug flag from 99-origin-dns.sh script (rteague@redhat.com)
+- BZ1702544 - Elasticsearch failed to start due to invalid cert date if hosts
+  have non-UTC timezone (nhosoi@redhat.com)
+- GlusterFS: Check brick usage before upgrade (jarrpa@redhat.com)
+- GlusterFS: Allow multiple nodes in cluster check (jarrpa@redhat.com)
+- GlusterFS: Backup heketi db on upgrade (jarrpa@redhat.com)
+- GlusterFS: Skip upgrade tasks when non-native (jarrpa@redhat.com)
+- GlusterFS: Mark heketi as missing after delete (jarrpa@redhat.com)
+
+* Tue May 07 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.114-1
+- 
+
+* Sun May 05 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.113-1
+- Remove myself from OWNERS due to pending absence (sdodson@redhat.com)
+
+* Thu May 02 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.112-1
+- Update Fuse templates with 7.3 release (antonin@stefanutti.fr)
+- Fix container registry block all not blocking all registries
+  (jcallen@redhat.com)
+- Fix typo in Cisco ACI roles (jbanerje@cisco.com)
+
+* Tue Apr 30 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.111-1
+- Replace remote_group_id by remote_ip_prefix (ltomasbo@redhat.com)
+- openshift_node: Allow storage_plugin tasks to work through import_role
+  (jarrpa@redhat.com)
+- GlusterFS: Set max-op-version at end of upgrade (jarrpa@redhat.com)
+- GlusterFS: Fix old-style relabeling (jarrpa@redhat.com)
+- SDN: tolerate taints (vrutkovs@redhat.com)
+- Correct usage of openshift_facts (rteague@redhat.com)
+- Fix openshift_logging set_fact FAILED in python3 (wu-wenixang@outlook.com)
+- Removing quotes while executing few aci related shell commands
+  (Gaurav.Dalvi@users.noreply.github.com)
+- Correctly evaluate openshift_metrics_heapster_standalone variable if it is
+  'false' with small f (jmartisk@redhat.com)
+- Add --debug flag to skopeo inspect in image health check.
+  (padillon@redhat.com)
+
+* Tue Apr 23 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.110-1
+- imageconfig playbook fails with undefined variables (jcallen@redhat.com)
+- Move modify_yaml test to appropriate directory (rteague@redhat.com)
+- glusterfs: Update iSCSI config as part of upgrade (jarrpa@redhat.com)
+- glusterfs: Update glusterfs-fuse package as part of upgrade
+  (jarrpa@redhat.com)
+- glusterfs: Only check for heketi pod when it may be missing
+  (jarrpa@redhat.com)
+- glusterfs: Minor fixes to upgrade playbook (jarrpa@redhat.com)
+- Add nodeName to node-config template for azure (jcallen@redhat.com)
+- Stop gathering Ansible facts in openshift_facts (rteague@redhat.com)
+- bug 1695903. Pass token from logging proxy to es for metrics
+  (jcantril@redhat.com)
+
+* Sun Apr 21 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.109-1
+- 
+
+* Thu Apr 18 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.108-1
+- OWNERS File Audit (rteague@redhat.com)
+- Test using Ansible 2.7.10 (rteague@redhat.com)
+- Update openshift_facts facts gathering (rteague@redhat.com)
+- #10765 Update installation doc link for release-3.11
+  (nikolas.philips@baloise.ch)
+
+* Tue Apr 16 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.107-1
+- openshift_ovirt: Fix hostname in the inventory groups (rgolan@redhat.com)
+- Fix serviceaccounts' secrets for Metrics (jmartisk@redhat.com)
+
+* Sun Apr 14 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.106-1
+- Fixes NotReady nodes after ca and certificate update (jcallen@redhat.com)
+- Ensure master vars are passed to openshift_facts on upgrade
+  (vrutkovs@redhat.com)
+- Console cert redeploy: rerun install (vrutkovs@redhat.com)
+
+* Thu Apr 11 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.105-1
+- Update roles/openshift_logging_elasticsearch/tasks/main.yaml
+  (roignac@gmail.com)
+- Update main.yaml (crmarquesjc@gmail.com)
+
 * Wed Apr 10 2019 AOS Automation Release Team <aos-team-art@redhat.com> 3.11.104-1
 - Change the cni-cleanup file path to /etc (gabriel.mainberger@vshn.net)
 - Backport of #10173 (egarcia@redhat.com)

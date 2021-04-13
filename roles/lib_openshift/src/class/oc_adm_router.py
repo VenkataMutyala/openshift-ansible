@@ -200,6 +200,11 @@ class Router(OpenShiftCLI):
                                                             edit.get('index', None),
                                                             edit.get('curr_value', None)))
             if edit['action'] == 'append':
+                if edit['key'] == deploymentconfig.env_path \
+                   and isinstance(edit['value'], dict) \
+                   and 'name' in edit['value'] \
+                   and deploymentconfig.exists_env_key(edit['value']['name']):
+                    deploymentconfig.delete_env_var(edit['value']['name'])
                 edit_results.append(deploymentconfig.append(edit['key'],
                                                             edit['value']))
 
@@ -466,7 +471,7 @@ class Router(OpenShiftCLI):
         # get
         ########
         if state == 'list':
-            return {'changed': False, 'results': api_rval, 'state': state}
+            return {'changed': False, 'module_results': api_rval, 'state': state}
 
         ########
         # Delete
@@ -483,7 +488,7 @@ class Router(OpenShiftCLI):
             # pylint: disable=redefined-variable-type
             api_rval = ocrouter.delete()
 
-            return {'changed': True, 'results': api_rval, 'state': state}
+            return {'changed': True, 'module_results': api_rval, 'state': state}
 
         if state == 'present':
             ########
@@ -499,7 +504,7 @@ class Router(OpenShiftCLI):
                 if api_rval['returncode'] != 0:
                     return {'failed': True, 'msg': api_rval}
 
-                return {'changed': True, 'results': api_rval, 'state': state}
+                return {'changed': True, 'module_results': api_rval, 'state': state}
 
             ########
             # Update
@@ -515,4 +520,4 @@ class Router(OpenShiftCLI):
             if api_rval['returncode'] != 0:
                 return {'failed': True, 'msg': api_rval}
 
-            return {'changed': True, 'results': api_rval, 'state': state}
+            return {'changed': True, 'module_results': api_rval, 'state': state}

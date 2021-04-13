@@ -40,7 +40,7 @@ class CallbackModule(CallbackBase):
         """
         super(CallbackModule, self).__init__()
 
-        if not parse_version(__version__) >= parse_version(REQUIRED_VERSION):
+        if not parse_version(REQUIRED_VERSION) <= parse_version(__version__):
             display(
                 'FATAL: Current Ansible version (%s) is not supported. %s'
                 % (__version__, DESCRIPTION), color='red')

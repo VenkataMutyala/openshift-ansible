@@ -292,7 +292,7 @@ resources:
     type: OS::Neutron::SubnetPool
     properties:
       prefixes: [ {{ openshift_openstack_kuryr_pod_subnet_cidr }} ]
-      default_prefixlen: 24
+      default_prefixlen: {{ openshift_openstack_kuryr_pod_subnet_prefixlen }}
       name:
         str_replace:
           template: openshift-ansible-cluster_id-pod-subnet-pool
@@ -322,29 +322,7 @@ resources:
       description: Give access to the services and pods on the default namespace from the other namespaces
       rules:
       - ethertype: IPv4
-        remote_group_id: { get_resource: sg_allow_from_default }
-        remote_mode: remote_group_id
-
-  sg_allow_from_default_rule:
-    type: OS::Neutron::SecurityGroupRule
-    properties:
-      security_group: { get_resource: sg_allow_from_default }
-      ethertype: IPv4
-      remote_group: { get_resource: sg_allow_from_namespace }
-
-  common-secgrp_namespace_rule:
-    type: OS::Neutron::SecurityGroupRule
-    properties:
-      security_group: { get_resource: common-secgrp }
-      ethertype: IPv4
-      remote_group: { get_resource: sg_allow_from_namespace }
-
-  common-secgrp_default_rule:
-    type: OS::Neutron::SecurityGroupRule
-    properties:
-      security_group: { get_resource: common-secgrp }
-      ethertype: IPv4
-      remote_group: { get_resource: sg_allow_from_default }
+        remote_ip_prefix: {{ openshift_openstack_kuryr_pod_subnet_cidr }}
 {% endif %}
 
 
@@ -488,7 +466,7 @@ resources:
         remote_ip_prefix: {{ openshift_openstack_subnet_cidr }}
 {% if openshift_kuryr_sg_driver|default('default') != 'namespace' %}
       - ethertype: IPv4
-        remote_mode: remote_group_id
+        remote_ip_prefix: {{ openshift_openstack_kuryr_pod_subnet_cidr }}
 {% endif %}
 {% endif %}
 

@@ -16,6 +16,17 @@
     import_role:
       name: openshift_sanitize_inventory
 
+  - name: Initialize openshift.node.sdn_mtu
+    openshift_facts:
+      role: node
+      system_facts: "{{ vars_openshift_facts_system_facts }}"
+      local_facts:
+        sdn_mtu: "{{ openshift_node_sdn_mtu | default(None) }}"
+
+  - name: set_fact l_kubelet_node_name
+    set_fact:
+      l_kubelet_node_name: "{{ openshift_kubelet_name_override | default(openshift.node.nodename) }}"
+
   - name: Detecting Operating System from ostree_booted
     stat:
       path: /run/ostree-booted
@@ -102,7 +113,7 @@
   - set_fact:
       # We need to setup openshift_client_binary here for special uses of delegate_to in
       # later roles and plays.
-      first_master_client_binary: "{{  openshift_client_binary }}"
+      first_master_client_binary: "{{ openshift_client_binary }}"
       #Some roles may require this to be set for first master
       openshift_client_binary: "{{ openshift_client_binary }}"
       # we need to know if a default node selector has been manually set outside the installer

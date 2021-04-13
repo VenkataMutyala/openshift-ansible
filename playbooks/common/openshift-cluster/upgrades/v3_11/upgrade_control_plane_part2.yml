@@ -33,7 +33,7 @@
     l_openshift_version_set_hosts: "oo_etcd_to_config:oo_masters_to_config:!oo_first_master"
     l_upgrade_repo_hosts: "oo_masters_to_config:oo_etcd_to_config:oo_lb_to_config"
     l_upgrade_no_proxy_hosts: "oo_masters_to_config"
-    l_upgrade_health_check_hosts: "oo_masters_to_config:oo_etcd_to_config:oo_lb_to_config"
+    l_upgrade_health_check_hosts: "oo_masters_to_config:oo_etcd_to_config"
     l_upgrade_verify_targets_hosts: "oo_masters_to_config"
     l_upgrade_docker_target_hosts: "oo_masters_to_config:oo_etcd_to_config"
     l_upgrade_excluder_hosts: "oo_masters_to_config"
@@ -82,15 +82,21 @@
   hosts: oo_first_master
   roles:
   - role: metrics_server
-    # a default is set on the actual variable in the role, so no fancy logic is needed here
-    when: openshift_metrics_server_install | default(true) | bool
-
+    when: openshift_metrics_server_install | default(openshift_metrics_install_metrics | default(false)) | bool
 
 - name: Configure components that must be available prior to upgrade
   hosts: oo_first_master
   roles:
   - role: openshift_sdn
     when: openshift_use_openshift_sdn | default(True) | bool
+
+- name: Configure kuryr components that must be available prior to upgrade
+  hosts: oo_first_master
+  tasks:
+  - import_role:
+      name: kuryr
+      tasks_from: master.yaml
+    when: openshift_use_kuryr | default(False) | bool
 
 - import_playbook: ../upgrade_control_plane.yml
   vars:
@@ -115,6 +121,14 @@
     when: >
           ('glusterfs' in groups and inventory_hostname in groups['glusterfs'])
           or ('glusterfs_registry' in groups and inventory_hostname in groups['glusterfs_registry'])
+
+- name: Run kube proxy, needed for ACI
+  hosts: oo_first_master
+  tasks:
+  - import_role:
+      name: kube_proxy_and_dns
+    run_once: True
+    when: openshift_use_aci | default(false) | bool
 
 - import_playbook: ../post_control_plane.yml
 

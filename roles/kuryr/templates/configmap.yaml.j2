@@ -154,8 +154,9 @@ data:
     daemon_enabled = true
 
     # Bind address for CNI daemon HTTP server. It is recommened to allow only local
-    # connections. (string value)
-    bind_address = 127.0.0.1:50036
+    # connections. (string value). If the kuryr-cni golang version is used, this
+    # must be left as 5036 as it is hardcoded at the moment
+    bind_address = 127.0.0.1:5036
 
     # Maximum number of processes that will be spawned to process requests from CNI
     # driver. (integer value)
@@ -237,7 +238,7 @@ data:
     # in the pipeline. (list value)
 {% if openshift_kuryr_subnet_driver|default('default') == 'namespace' %}
 {% if openshift_kuryr_sg_driver|default('default') == 'policy' %}
-    enabled_handlers = vif,lb,lbaasspec,namespace,policy,pod_label,kuryrnetpolicy
+    enabled_handlers = vif,lb,lbaasspec,namespace,policy,pod_label,kuryrnetpolicy,kuryrnet
 {% else %}
     enabled_handlers = vif,lb,lbaasspec,namespace
 {% endif %}
@@ -326,6 +327,7 @@ data:
 {% if kuryr_openstack_public_subnet_id|default(false) %}
     external_svc_subnet = {{ kuryr_openstack_public_subnet_id }}
 {% endif %}
+    resource_tags = {{ openshift_openstack_clusterid }}
 
 {% if openshift_kuryr_subnet_driver|default('default') == 'namespace' %}
     [namespace_subnet]
@@ -337,6 +339,7 @@ data:
     [namespace_sg]
     sg_allow_from_namespaces = {{ kuryr_openstack_sg_allow_from_namespace_id }}
     sg_allow_from_default = {{ kuryr_openstack_sg_allow_from_default_id }}
+    global_namespaces = {{ kuryr_openstack_global_namespaces }}
 {% endif %}
 
     # Time (in seconds) that Kuryr controller waits for LBaaS to be activated
@@ -529,8 +532,9 @@ data:
     daemon_enabled = true
 
     # Bind address for CNI daemon HTTP server. It is recommened to allow only local
-    # connections. (string value)
-    bind_address = 127.0.0.1:50036
+    # connections. (string value). If the kuryr-cni golang version is used, this
+    # must be left as 5036 as it is hardcoded at the moment
+    bind_address = 127.0.0.1:5036
 
     # Maximum number of processes that will be spawned to process requests from CNI
     # driver. (integer value)

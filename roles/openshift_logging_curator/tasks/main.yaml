@@ -48,18 +48,7 @@
     - openshift_logging_curator_image_pull_secret == ''
 
 # secret
-- name: Set Curator secret
-  oc_secret:
-    state: present
-    name: "logging-curator"
-    namespace: "{{ openshift_logging_namespace }}"
-    files:
-      - name: ca
-        path: "{{ generated_certs_dir }}/ca.crt"
-      - name: key
-        path: "{{ generated_certs_dir }}/system.logging.curator.key"
-      - name: cert
-        path: "{{ generated_certs_dir }}/system.logging.curator.crt"
+- include_tasks: generate_secret.yaml
 
 - set_fact:
     curator_name: "{{ 'logging-curator' ~ ( (openshift_logging_curator_ops_deployment | default(false) | bool) | ternary('-ops', '') ) }}"
@@ -97,29 +86,53 @@
   check_mode: no
   changed_when: no
 
-# Copy config files
-- copy:
-    src: "{{ item }}"
-    dest: "{{ tempdir }}/{{ item }}"
-  with_items:
-    - "actions.yaml"
-    - "config.yaml"
-    - "curator.yml"
+- name: Get existing configmap logging-curator
+  oc_configmap:
+    state: list
+    name: logging-curator
+    namespace: "{{ openshift_logging_namespace }}"
+  register: __current_curator_configmap_output
 
-# Patch existing configuration, if present
-- include_role:
-    name: openshift_logging
-    tasks_from: patch_configmap_files.yaml
-  vars:
-    configmap_name: "logging-curator"
-    configmap_namespace: "{{ openshift_logging_namespace }}"
-    configmap_file_names:
-      - current_file: "actions.yaml"
-        new_file: "{{ tempdir }}/actions.yaml"
-      - current_file: "curator5.yaml"
-        new_file: "{{ tempdir }}/config.yaml"
-      - current_file: "config.yaml"
-        new_file: "{{ tempdir }}/curator.yml"
+- set_fact:
+    __curator_configmap_missing: "{{ __current_curator_configmap_output.module_results.stderr is defined }}"
+
+- name: create/update curator configuration
+  when: __curator_configmap_missing|bool or openshift_logging_curator_replace_configmap|bool
+  block:
+    # Copy config files
+    - copy:
+        src: "{{ item }}"
+        dest: "{{ tempdir }}/{{ item }}"
+      with_items:
+        - "actions.yaml"
+        - "config.yaml"
+        - "curator.yml"
+
+    # Patch existing configuration, if present
+    - include_role:
+        name: openshift_logging
+        tasks_from: patch_configmap_files.yaml
+      vars:
+        configmap_name: "logging-curator"
+        configmap_namespace: "{{ openshift_logging_namespace }}"
+        configmap_file_names:
+          - current_file: "actions.yaml"
+            new_file: "{{ tempdir }}/actions.yaml"
+          - current_file: "curator5.yaml"
+            new_file: "{{ tempdir }}/config.yaml"
+          - current_file: "config.yaml"
+            new_file: "{{ tempdir }}/curator.yml"
+
+    # Create config map
+    - name: Set Curator configmap
+      oc_configmap:
+        state: present
+        name: "logging-curator"
+        namespace: "{{ openshift_logging_namespace }}"
+        from_file:
+          actions.yaml: "{{ tempdir }}/actions.yaml"
+          curator5.yaml: "{{ tempdir }}/config.yaml"
+          config.yaml: "{{ tempdir }}/curator.yml"
 
 # Create cronjob
 - name: Set Curator Cronjob
@@ -131,17 +144,6 @@
     files:
       - "{{ tempdir }}/templates/curator-cj.yaml"
     delete_after: true
-
-# Create config map
-- name: Set Curator configmap
-  oc_configmap:
-    state: present
-    name: "logging-curator"
-    namespace: "{{ openshift_logging_namespace }}"
-    from_file:
-      actions.yaml: "{{ tempdir }}/actions.yaml"
-      curator5.yaml: "{{ tempdir }}/config.yaml"
-      config.yaml: "{{ tempdir }}/curator.yml"
 
 - name: Delete temp directory
   file:
