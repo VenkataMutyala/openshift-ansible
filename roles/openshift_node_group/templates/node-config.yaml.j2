@@ -20,6 +20,8 @@ imageConfig:
   latest: false
 iptablesSyncPeriod: "{{ openshift_node_iptables_sync_period }}"
 kubeletArguments:
+  image-pull-progress-deadline:
+  - "10m"
 {% if openshift_is_atomic | bool %}
   volume-plugin-dir:
   - "/etc/origin/kubelet-plugins/volume/exec"
